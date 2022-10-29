@@ -239,7 +239,7 @@ function restore_BingoCard() {
 
 
 // ビンゴクリック
-// function clickCard(row, colmun, item) {
+function clickCard(row, colmun, item) {
     let mycard = document.getElementById(row + '-' + colmun);
     if (mycard.classList.contains('done')) {
         mycard.classList.remove('done');
