@@ -132,10 +132,12 @@ function create_BingoCard() {
     }
     mybingo = [];
     for (let row = 0; row < bingo_size; row++) {
-        let tr = document.createElement('tr');
+        let tr = document.createElement('div');
+        tr.className = 'tr';
         table.appendChild(tr);
         for (let colmun = 0; colmun < bingo_size; colmun++) {
-            let td = document.createElement('td');
+            let td = document.createElement('div');
+            td.className = 'td';
             let img = document.createElement('img');
             let item = '';
             if ( row == center_num && colmun == center_num ) {
@@ -188,10 +190,12 @@ function restore_BingoCard() {
     let colmun = 0;
     for (let mycard in mybingo) {
         if (colmun == 0) {
-            var tr = document.createElement('tr');
+            var tr = document.createElement('div');
+            tr.className = 'tr';
             table.appendChild(tr);
         }
-        let td = document.createElement('td');
+        let td = document.createElement('div');
+        td.className = 'td';
         let img = document.createElement('img');
 
         if ( mybingo[mycard]['item'].substr(0,6) == 'weapon' ) {
@@ -402,7 +406,17 @@ function loadLocalStorage() {
 };
 
 
+// 横幅最大をWindowの縦サイズにする
+function setWindowSize() {
+    let windowsize = window.innerHeight;
+    document.getElementById('contents').style.cssText = 'max-width : ' + (windowsize * 0.95) + 'px;';
+}
+
+
+// 実行
 window.onload = function() {
+    setWindowSize();
     add_WeaponsOption();
     loadLocalStorage();
+    // window.addEventListener('resize', setWindowSize);
 };

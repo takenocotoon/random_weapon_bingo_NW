@@ -4,8 +4,9 @@
 @font-face {
   font-family: Splatoon2;
   src:
-    url('./font/s2font.woff2') format('woff2'),
-    url('./font/s2font.woff') format('woff');
+    /* url('./font/s2font.woff2') format('woff2'),
+    url('./font/s2font.woff') format('woff'), */
+    url('./font/s2font.ttf') format('truetype');
 }
 
 
@@ -24,7 +25,7 @@ body, h1 {
 	padding: 0;
 }
 *, *::before, *::after {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 .clearfix::after {
   content:'';
@@ -70,110 +71,143 @@ h1 {
   line-height: 2.5rem;
 }
 #create-card {
+  display: block;
 	font-size: 1.5rem;
 	font-family: Splatoon2;
   margin: 20px 0;
-  padding: 10px;
+  padding: 0.5rem;
   width: 100%;
   min-width: 10rem;
   line-height: 2rem;
+  border: 4px #555 solid;
+  border-radius: 2rem;
+  background: #555;
+  color: #FFF;
 }
 
 
 /** ビンゴカード **/
 #bingo-card-box {
-  position: relative;
+  /* position: relative; */
   width: 100%;
-  background-repeat: no-repeat;
-  background-size: contain;
   border-radius: 5%;
 }
 .salmonrun #bingo-card-box {
   background-image: url('images/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   border: 3px solid #FFF;
-  outline: solid 2px #333;
-  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2);
+  /* outline: solid 2px #333; */
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2), 0 0 0 2px #333;
 }
 .battle #bingo-card-box {
   background-image: url('images/background2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   border: 3px solid #FFF;
-  outline: solid 2px #333;
-  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2);
+  /* outline: solid 2px #333; */
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2), 0 0 0 2px #333;
 }
-#bingo-card-box::before {
+.salmon-orange #bingo-card-box {
+  background-image: url('images/background3.png');
+  background-repeat: repeat;
+  border: 3px solid #FFF;
+  /* outline: solid 2px #333; */
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2), 0 0 0 2px #333;
+}
+.ikatako #bingo-card-box {
+  background-image: url('images/background4.png');
+  background-repeat: repeat;
+  border: 3px solid #FFF;
+  /* outline: solid 2px #333; */
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2), 0 0 0 2px #333;
+}
+/* #bingo-card-box::before {
   content: "";
   display: block;
   padding-top: 100%;
-}
+} */
 #bingo-card-table {
-  position: absolute;
-  top: 0;
-  left: 0;
-  table-layout: fixed;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  /* table-layout: fixed; */
   width: 100%;
-  height: 100%;
-  padding: 3%;
-  border-spacing: 0.4em;
+  /* height: 100%; */
+  aspect-ratio: 1 / 1;
+  /* padding: 3%; */
+  /* border-spacing: 0.4em; */
+  /* border-spacing: 10px; */
+  /* display: flex; */
 }
-#bingo-card-table td {
-  position: relative;
+#bingo-card-table .tr {
+  /* flex-direction: column; */
+  display: flex;
+  margin: 1% 0 0 1%;
+}
+#bingo-card-table .td {
+  /* position: relative; */
+  flex-direction: row;
   background: rgba(255, 255, 255, .8);
   border-radius: 30%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  margin: 0;
+  /* aspect-ratio: 1 / 1; */
+  /* width: 100%; */
+  /* width: 100px; */
+  /* height: 100px; */
+  /* margin: 0; */
+  margin: 0 1% 0 0;
   padding: 0;
   text-align: center;
   vertical-align: middle;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
-.transparent #bingo-card-box td {
+.transparent #bingo-card-box .td {
   background: rgba(0, 0, 0, .9);
   border-radius: 100%;
   background-size: contain;
 }
-.green #bingo-card-box td {
+.green #bingo-card-box .td {
   background: rgba(0, 0, 0, 1);
   border-radius: 100%;
   background-size: contain;
 }
-#bingo-card-table td img {
+#bingo-card-table .td img {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   margin: 0;
   padding: 0;
-  position: absolute;
+  vertical-align:top;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
 }
-#bingo-card-table td.done {
+#bingo-card-table .td.done {
   background-image: url(./images/paint.png);
   background-color: rgba(0, 0, 0, .8);
 }
-.transparent #bingo-card-box td.done {
+.transparent #bingo-card-box .td.done, .green #bingo-card-box .td.done {
   background-color: rgba(0, 0, 0, 0);
 }
-.green #bingo-card-box td.done {
-  background-color: rgba(0, 0, 0, 0);
-}
-#bingo-card-table td.bingo {
+#bingo-card-table .td.bingo {
   background-image: url(./images/paint.png);
   background-color: #ff2900;
 }
-.transparent #bingo-card-box td.bingo {
+.transparent #bingo-card-box .td.bingo, .green #bingo-card-box .td.bingo {
   background-image: url(./images/paint_bingo.png);
 }
-.transparent #bingo-card-box td.bingo img {
+.transparent #bingo-card-box .td.bingo img {
   filter: grayscale(0%);
 }
-#bingo-card-table td.done img, #bingo-card-table td.bingo img {
+#bingo-card-table .td.done img, #bingo-card-table .td.bingo img {
   filter: grayscale(100%);
 }
-#bingo-card-table td.reach {
+#bingo-card-table .td.reach {
   background-color: rgba(255, 218, 8, 0.7);
 }
-.green #bingo-card-table td.reach {
+.green #bingo-card-table .td.reach {
   background-color: rgba(255, 218, 8, 1);
 }
 
