@@ -239,12 +239,8 @@ function restore_BingoCard() {
 
 
 // ビンゴクリック
-function clickCard(row, colmun, item) {
-    console.log(row);
-    console.log(colmun);
-    console.log(item);
+// function clickCard(row, colmun, item) {
     let mycard = document.getElementById(row + '-' + colmun);
-    console.log(mycard)
     if (mycard.classList.contains('done')) {
         mycard.classList.remove('done');
         mybingo[row * bingo_size + colmun]['done'] = false;
