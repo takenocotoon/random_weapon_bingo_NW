@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Splatoon3 ブキビンゴ</title>
+  <meta name="og:title" content="Splatoon3 ブキビンゴ">
+  <meta name="description"    content="Splatoon3のブキでビンゴするツールです。">
+  <meta name="og:description" content="Splatoon3のブキでビンゴするツールです。">
+  <meta name="og:image" content="https://takenocotoon.github.io/random_weapon_bingo_nw/icon.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <link rel="canonical"      href="https://takenocotoon.github.io/random_weapon_bingo_nw/">
+  <meta property="og:url" content="https://takenocotoon.github.io/random_weapon_bingo_nw/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@takenocotoon">
+  <meta name="theme-color" content="#FE6345">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon"      href="icon.png">
+  <link rel="manifest" href="manifest.json">
+  <script type="module">
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <link rel="stylesheet"         href="style.css">
+  <script type="text/javascript"  src="script.js"></script>
+</head>
+<body>
+  <div id="contents">
+    <h1 id="title">Splatoon3 ブキビンゴ</h1>
+    <div class="bar">
+      <div id="settings">
+        <label for="bingo-center">中央</label>
+        <select id="bingo-center">
+          <option value="kuma"  >FREE(クマサン)</option>
+          <option value="squid" >FREE(イカ)</option>
+          <option value="random">ランダム</option>
+        </select>
+        <br class="clearfix">
+        <label for="bingo-size">大きさ</label>
+        <select id="bingo-size">
+          <option value="5">5 × 5</option>
+          <option value="7">7 × 7</option>
+        </select>
+        <br class="clearfix">
+        <label for="bingo-background">背景</label>
+        <select id="bingo-background">
+          <option value="salmonrun"  >サーモンラン</option>
+          <option value="battle"     >バトル</option>
+          <option value="transparent">透過</option>
+          <option value="green"      >グリーンバック</option>
+        </select>
+        <br class="clearfix">
+      </div>
+      <button type="button" id="create-card" onclick="create_BingoCard()">ビンゴカードを作る<br>▼</button>
+    </div>
+    <div id="bingo-box">
+      <div id="bingo-card-box">
+        <table id="bingo-card-table">
+        </table>
+      </div>
+      <div id="bingo-message">
+        <div id="is-bingo-message"></div>
+        <div id="is-reach-message"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

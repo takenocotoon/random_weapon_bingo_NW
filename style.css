@@ -1,0 +1,203 @@
+@charset "UTF-8";
+
+/** フォント設定 **/
+@font-face {
+  font-family: Splatoon2;
+  src:
+    url('./font/s2font.woff2') format('woff2'),
+    url('./font/s2font.woff') format('woff');
+}
+
+
+/** 基本設定 **/
+html {
+  font-size: 100%;
+}
+body {
+  font-size: 1.5rem;
+  font-family: Splatoon2, sans-serif;
+  color: #555555;
+  background-color: rgba(0,0,0,0);
+}
+body, h1 {
+	margin: 0;
+	padding: 0;
+}
+*, *::before, *::after {
+  box-sizing:border-box;
+}
+.clearfix::after {
+  content:'';
+  display:block;
+  clear:both;
+}
+#contents {
+  width: 90%;
+  max-width: 1080px;
+  margin: 0 auto 50px;
+}
+body.green {
+  background-color: #00FF00;
+}
+
+
+/* タイトル */
+h1 {
+  font-size: 2.8rem;
+  font-weight: normal;
+}
+
+
+/* 設定メニュー */
+#settings {
+  font-size: 1.5rem;
+  padding: 10px;
+  
+}
+#settings label {
+  display: block;
+  float: left;
+  width: 4rem;
+  height: 2rem;
+  line-height: 2.5rem;
+}
+#settings select {
+  float: left;
+	color: #555555;
+	font-size: 1.2rem;
+	font-family: Splatoon2;
+  height: 2.5rem;
+  line-height: 2.5rem;
+}
+#create-card {
+	font-size: 1.5rem;
+	font-family: Splatoon2;
+  margin: 20px 0;
+  padding: 10px;
+  width: 100%;
+  min-width: 10rem;
+  line-height: 2rem;
+}
+
+
+/** ビンゴカード **/
+#bingo-card-box {
+  position: relative;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 5%;
+}
+.salmonrun #bingo-card-box {
+  background-image: url('images/background.png');
+  border: 3px solid #FFF;
+  outline: solid 2px #333;
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2);
+}
+.battle #bingo-card-box {
+  background-image: url('images/background2.png');
+  border: 3px solid #FFF;
+  outline: solid 2px #333;
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2);
+}
+#bingo-card-box::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+#bingo-card-table {
+  position: absolute;
+  top: 0;
+  left: 0;
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 3%;
+  border-spacing: 0.4em;
+}
+#bingo-card-table td {
+  position: relative;
+  background: rgba(255, 255, 255, .8);
+  border-radius: 30%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.transparent #bingo-card-box td {
+  background: rgba(0, 0, 0, .9);
+  border-radius: 100%;
+  background-size: contain;
+}
+.green #bingo-card-box td {
+  background: rgba(0, 0, 0, 1);
+  border-radius: 100%;
+  background-size: contain;
+}
+#bingo-card-table td img {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#bingo-card-table td.done {
+  background-image: url(./images/paint.png);
+  background-color: rgba(0, 0, 0, .8);
+}
+.transparent #bingo-card-box td.done {
+  background-color: rgba(0, 0, 0, 0);
+}
+.green #bingo-card-box td.done {
+  background-color: rgba(0, 0, 0, 0);
+}
+#bingo-card-table td.bingo {
+  background-image: url(./images/paint.png);
+  background-color: #ff2900;
+}
+.transparent #bingo-card-box td.bingo {
+  background-image: url(./images/paint_bingo.png);
+}
+.transparent #bingo-card-box td.bingo img {
+  filter: grayscale(0%);
+}
+#bingo-card-table td.done img, #bingo-card-table td.bingo img {
+  filter: grayscale(100%);
+}
+#bingo-card-table td.reach {
+  background-color: rgba(255, 218, 8, 0.7);
+}
+.green #bingo-card-table td.reach {
+  background-color: rgba(255, 218, 8, 1);
+}
+
+
+/** メッセージ **/
+#bingo-message {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 20px;
+  height: 5rem;
+}
+#is-bingo-message {
+  color: #000;
+  background-color: rgba(255, 100, 100, .7);
+  width: 100%;
+}
+.green #is-bingo-message {
+  background-color: rgba(255, 100, 100, 1);
+}
+#is-reach-message {
+  color: #FFF;
+  background-color: rgba(0, 0, 0, .7);
+  width: 100%;
+}
+.green #is-reach-message {
+  background-color: rgba(0, 0, 0, 1);
+}
