@@ -15,10 +15,12 @@ html {
   font-size: 100%;
 }
 body {
+  width: 100%;
   font-size: 1.5rem;
   font-family: Splatoon2, sans-serif;
   color: #555555;
   background-color: rgba(0,0,0,0);
+  -webkit-print-color-adjust: exact;
 }
 body, h1 {
 	margin: 0;
@@ -34,7 +36,7 @@ body, h1 {
 }
 #contents {
   width: 90%;
-  max-width: 1080px;
+  max-width: 95vmin;
   margin: 0 auto 50px;
 }
 body.green {
@@ -62,6 +64,9 @@ h1 {
   height: 2rem;
   line-height: 2.5rem;
 }
+#settings label.label_c {
+  width: auto;
+}
 #settings select {
   float: left;
 	color: #555555;
@@ -70,7 +75,7 @@ h1 {
   height: 2.5rem;
   line-height: 2.5rem;
 }
-#create-card {
+button {
   display: block;
 	font-size: 1.5rem;
 	font-family: Splatoon2;
@@ -83,6 +88,40 @@ h1 {
   border-radius: 2rem;
   background: #555;
   color: #FFF;
+}
+.checktitle {
+  padding-left: 1.8rem;
+  position: relative;
+}
+.checktitle::before {
+  background-color: white;
+  border: 1px solid #555;
+  border-radius: 0.3rem;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 25%;
+  left: 0;
+  height: 1.4rem;
+  width: 1.4rem;
+}
+input.check {
+  display: none;
+}
+input.check:checked + .checktitle::before{
+  background-color: #555;
+}
+input.check:checked + .checktitle::after{
+  border-bottom: 4px solid #EEE;
+  border-right: 4px solid #EEE;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 28%;
+  left: 0.4rem;
+  height: 0.9rem;
+  width: 0.5rem;
+  transform: rotate(40deg);
 }
 
 
@@ -216,8 +255,10 @@ h1 {
 #bingo-message {
   text-align: center;
   font-size: 1.8rem;
+  line-height: 3rem;
   margin-top: 20px;
-  height: 5rem;
+  /* margin-bottom: 20px; */
+  height: 6rem;
 }
 #is-bingo-message {
   color: #000;
@@ -234,4 +275,42 @@ h1 {
 }
 .green #is-reach-message {
   background-color: rgba(0, 0, 0, 1);
+}
+
+
+/** tools-footer **/
+#tools-footer {
+  display: flex;
+}
+#tools-footer button {
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  margin: 1rem;
+}
+
+
+/** 画像保存 **/
+#save-img-area {
+  padding: 1px;
+  /* margin-top: 50px; */
+  width: 1080px;
+}
+#save-img-area div#bingo-card-box.saved-card {
+  /* width: 1080px !important; */
+  /* border-radius: 0 !important; */
+  /* background-size: 100% 100%; */
+  /* background:rgba(255, 100, 100, .7) !important; */
+  box-shadow: none;
+
+}
+/* .transparent #save-img-area div#bingo-card-box.saved-card, .green #save-img-area div#bingo-card-box.saved-card {
+  box-shadow: none;
+} */
+
+
+#footer {
+	color: #999;
+	margin-top: 80px;
+	font-size: 1rem;
+  text-align: right;
 }

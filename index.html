@@ -22,50 +22,75 @@
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
   </script>
-  <link rel="stylesheet"         href="style.css">
-  <script type="text/javascript"  src="script.js"></script>
+  <link rel="stylesheet" type="text/css"               href="style.css">
+  <link rel="stylesheet" type="text/css" media="print" href="print.css">
+  <script type="text/javascript"                        src="script.js"></script>
+  <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
 </head>
 <body>
   <div id="contents">
-    <h1 id="title">Splatoon3 ブキビンゴ</h1>
-    <div class="bar">
-      <div id="settings">
-        <label for="bingo-center">中央</label>
-        <select id="bingo-center">
-          <option value="kuma"  >FREE(クマサン)</option>
-          <option value="squid" >FREE(イカ)</option>
-          <option value="random">ランダム</option>
-        </select>
-        <br class="clearfix">
-        <label for="bingo-size">大きさ</label>
-        <select id="bingo-size">
-          <option value="5">5 × 5</option>
-          <option value="7">7 × 7</option>
-        </select>
-        <br class="clearfix">
-        <label for="bingo-background">背景</label>
-        <select id="bingo-background">
-          <option value="salmonrun"     >サーモンラン</option>
-          <option value="battle"        >バトル</option>
-          <option value="salmon-orange" >オレンジ</option>
-          <option value="ikatako"       >グレー</option>
-          <option value="transparent"   >透過</option>
-          <option value="green"         >グリーンバック</option>
-        </select>
-        <br class="clearfix">
+    <header>
+      <h1 id="title">Splatoon3 ブキビンゴ</h1>
+      <div class="bar no-print">
+        <div id="settings">
+          <label for="bingo-center">中央</label>
+          <select id="bingo-center">
+            <option value="kuma"  >FREE(クマサン)</option>
+            <option value="squid" >FREE(イカ)</option>
+            <option value="random">ランダム</option>
+          </select>
+          <br class="clearfix">
+          <label for="bingo-size">大きさ</label>
+          <select id="bingo-size">
+            <option value="5">5 × 5</option>
+            <option value="7">7 × 7</option>
+          </select>
+          <br class="clearfix">
+          <label for="bingo-background">背景</label>
+          <select id="bingo-background">
+            <option value="salmonrun"     >サーモンラン</option>
+            <option value="battle"        >バトル</option>
+            <option value="salmon-orange" >オレンジ</option>
+            <option value="ikatako"       >グレー</option>
+            <option value="transparent"   >透過</option>
+            <option value="green"         >グリーンバック</option>
+          </select>
+          <br class="clearfix">
+          <!-- <label for="bingo-icon">アイコン</label>
+          <select id="bingo-icon">
+            <option value="2D">2D</option>
+            <option value="3D">3D</option>
+          </select>
+          <br class="clearfix"> -->
+          <label for="bingo-effect" class="label_c"><input type="checkbox" class="check" id="bingo-effect" checked><span class="checktitle">ビンゴ演出</span></label>
+          <br class="clearfix">
+        </div>
+        <button type="button" id="create-card" onclick="create_BingoCard();">ビンゴカードを作る<br>▼</button>
       </div>
-      <button type="button" id="create-card" onclick="create_BingoCard()">ビンゴカードを作る<br>▼</button>
-    </div>
-    <div id="bingo-box">
-      <div id="bingo-card-box">
-        <div id="bingo-card-table">
+    </header>
+    <main>
+      <div id="bingo-box">
+        <div id="bingo-card-box">
+          <div id="bingo-card-table">
+          </div>
+        </div>
+        <div id="bingo-message" class="no-print">
+          <div id="is-bingo-message"></div>
+          <div id="is-reach-message"></div>
         </div>
       </div>
-      <div id="bingo-message">
-        <div id="is-bingo-message"></div>
-        <div id="is-reach-message"></div>
+    </main>
+    <footer>
+      <div id="tools-footer" class="no-print">
+        <button type="button" onclick="save_img();">画像として保存する</button>
+        <button type="button" onclick="window.print();">印刷する</button>
       </div>
-    </div>
+      <div id="footer">
+        Copyright (c) 2022 takenocotoon
+      </div>
+    </footer>
   </div>
+  <!-- <div id="save-img-area"></div> -->
 </body>
 </html>

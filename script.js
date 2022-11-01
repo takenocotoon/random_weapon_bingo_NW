@@ -76,6 +76,8 @@ var mybingo = localStorage.getItem('mybingo');
 var bingo_center = localStorage.getItem('bingo_center');
 var bingo_size = localStorage.getItem('bingo_size');
 var bingo_background = localStorage.getItem('bingo_background');
+var bingo_effect = localStorage.getItem('bingo_effect');
+var bingo_count = 0;
 
 
 
@@ -164,6 +166,8 @@ function create_BingoCard() {
                 weapon = items.splice(Math.floor(Math.random() * items.length), 1)[0];
                 // td.style.backgroundImage = 'url(./images/weapons/' + weapon['no'] + '.png)';
                 img.src = './images/weapons/' + weapon['no'] + '.png';
+                img.alt = weapon['ja'];
+                img.title = weapon['ja'];
                 // td.style.content = 'url(./images/weapons/' + weapon['no'] + '.png)';
                 item = 'weapon' + weapon['no'];
             };
@@ -177,7 +181,7 @@ function create_BingoCard() {
         };
     };
     localStorage.setItem('mybingo', JSON.stringify(mybingo));
-    checkBingo();
+    bingo_count = checkBingo();
 };
 
 
@@ -212,6 +216,8 @@ function restore_BingoCard() {
                 }
             };
             img.src = './images/weapons/' + myweapon['no'] + '.png';
+            img.alt = myweapon['ja'];
+            img.title = myweapon['ja'];
         } else {
             img.src = './images/'+mybingo[mycard]['item']+'.png';
         }
@@ -234,7 +240,7 @@ function restore_BingoCard() {
             row++;
         }
     };
-    checkBingo();
+    bingo_count = checkBingo();
 }
 
 
@@ -248,7 +254,18 @@ function clickCard(row, colmun, item) {
         mycard.classList.add('done');
         mybingo[row * bingo_size + colmun]['done'] = true;
     }
-    checkBingo();
+
+    // 花吹雪
+    let bingo_num = checkBingo();
+    if (bingo_effect == 'on' && bingo_num > bingo_count) {
+        confetti({
+            angle: (Math.random() * (100 - 80) + 80),
+            particleCount: (Math.random() * (150 - 80) + 80),
+            spread: (Math.random() * (70 - 50) + 50),
+            origin: { y: 0.6 }
+          });
+    }
+    bingo_count = bingo_num;
     localStorage.setItem('mybingo', JSON.stringify(mybingo));
 }
 
@@ -260,27 +277,27 @@ function checkBingo() {
         mycard.classList.remove('reach');
         mycard.classList.remove('bingo');
     }
-    let bingo_count = 0;
-    let reach_count = 0;
+    let bingo_num = 0;
+    let reach_num = 0;
     for (let row = 0; row < bingo_size; row++) {
-        var done_count = 0;
+        var done_num = 0;
         for (let colmun = 0; colmun < bingo_size; colmun++) {
             if (mybingo[row * bingo_size + colmun]['done']) {
-                done_count++;
+                done_num++;
             }
         }
-        if (done_count == bingo_size-1) {
+        if (done_num == bingo_size-1) {
             console.log('リーチ');
-            reach_count++;
+            reach_num++;
             for (let colmun = 0; colmun < bingo_size; colmun++) {
                 let mycard = document.getElementById(row + '-' + colmun);
                 if (!mycard.classList.contains('done')) {
                     mycard.classList.add('reach');
                 }
             }
-        } else if (done_count == bingo_size) {
+        } else if (done_num == bingo_size) {
             console.log('ビンゴ');
-            bingo_count++;
+            bingo_num++;
             for (let colmun = 0; colmun < bingo_size; colmun++) {
                 let mycard = document.getElementById(row + '-' + colmun);
                 mycard.classList.add('bingo');
@@ -288,71 +305,71 @@ function checkBingo() {
         }
     }
     for (let colmun = 0; colmun < bingo_size; colmun++) {
-        var done_count = 0;
+        var done_num = 0;
         for (let row = 0; row < bingo_size; row++) {
             if (mybingo[row * bingo_size + colmun]['done']) {
-                done_count++;
+                done_num++;
             }
         }
-        if (done_count == bingo_size-1) {
+        if (done_num == bingo_size-1) {
             console.log('リーチ');
-            reach_count++;
+            reach_num++;
             for (let row = 0; row < bingo_size; row++) {
                 let mycard = document.getElementById(row + '-' + colmun);
                 if (!mycard.classList.contains('done')) {
                     mycard.classList.add('reach');
                 }
             }
-        } else if (done_count == bingo_size) {
+        } else if (done_num == bingo_size) {
             console.log('ビンゴ');
-            bingo_count++;
+            bingo_num++;
             for (let row = 0; row < bingo_size; row++) {
                 let mycard = document.getElementById(row + '-' + colmun);
                 mycard.classList.add('bingo');
             }
         }
     }
-    var done_count = 0;
+    var done_num = 0;
     for (let row = 0; row < bingo_size; row++) {
         if (mybingo[row * bingo_size + row]['done']) {
-            done_count++;
+            done_num++;
         }
     }
-    if (done_count == bingo_size-1) {
+    if (done_num == bingo_size-1) {
         console.log('リーチ');
-        reach_count++;
+        reach_num++;
         for (let row = 0; row < bingo_size; row++) {
             let mycard = document.getElementById(row + '-' + row);
             if (!mycard.classList.contains('done')) {
                 mycard.classList.add('reach');
             }
         }
-    } else if (done_count == bingo_size) {
+    } else if (done_num == bingo_size) {
         console.log('ビンゴ');
-        bingo_count++;
+        bingo_num++;
         for (let row = 0; row < bingo_size; row++) {
             let mycard = document.getElementById(row + '-' + row);
             mycard.classList.add('bingo');
         }
     }
-    var done_count = 0;
+    var done_num = 0;
     for (let row = 0; row < bingo_size; row++) {
         if (mybingo[row * bingo_size + (bingo_size - 1 - row)]['done']) {
-            done_count++;
+            done_num++;
         }
     }
-    if (done_count == bingo_size-1) {
+    if (done_num == bingo_size-1) {
         console.log('リーチ');
-        reach_count++;
+        reach_num++;
         for (let row = 0; row < bingo_size; row++) {
             let mycard = document.getElementById(row + '-' + (bingo_size - 1 - row));
             if (!mycard.classList.contains('done')) {
                 mycard.classList.add('reach');
             }
         }
-    } else if (done_count == bingo_size) {
+    } else if (done_num == bingo_size) {
         console.log('ビンゴ');
-        bingo_count++;
+        bingo_num++;
         for (let row = 0; row < bingo_size; row++) {
             let mycard = document.getElementById(row + '-' + (bingo_size - 1 - row));
             mycard.classList.add('bingo');
@@ -360,25 +377,37 @@ function checkBingo() {
     }
 
     const bingo_ele = document.getElementById('is-bingo-message');
-    if (bingo_count > 0) {
-        if (bingo_count == 1) {
+    if (bingo_num > 0) {
+        if (bingo_num == 1) {
             bingo_ele.innerHTML = 'BINGO !!';
         } else {
-            bingo_ele.innerHTML = bingo_count + ' BINGO !!!';
+            bingo_ele.innerHTML = bingo_num + ' BINGO !!!';
         }
     } else {
         bingo_ele.innerHTML = '';
     }
     const reach_ele = document.getElementById('is-reach-message');
-    if (reach_count > 0) {
-        if (reach_count == 1) {
+    if (reach_num > 0) {
+        if (reach_num == 1) {
             reach_ele.innerHTML = 'リーチ';
         } else {
-            reach_ele.innerHTML = reach_count + ' リーチ !';
+            reach_ele.innerHTML = reach_num + ' リーチ !';
         }
     } else {
         reach_ele.innerHTML = '';
     }
+    return bingo_num;
+}
+
+
+// ビンゴ演出オンオフ
+function changeEffect() {
+    if (document.getElementById('bingo-effect').checked) {
+        bingo_effect = 'on';
+    } else {
+        bingo_effect = 'off'
+    }
+    localStorage.setItem('bingo_effect', bingo_effect);
 }
 
 
@@ -393,6 +422,12 @@ function loadLocalStorage() {
     if (bingo_background) {
         document.getElementById('bingo-background').value = bingo_background;
     };
+    if (bingo_effect == 'off') {
+        document.getElementById('bingo-effect').checked = false;
+    } else {
+        bingo_effect = 'on';
+    };
+    document.getElementById('bingo-effect').addEventListener('change', changeEffect)
     if (mybingo) {
         mybingo = JSON.parse(mybingo);
         restore_BingoCard();
@@ -406,6 +441,24 @@ function loadLocalStorage() {
 function setWindowSize() {
     let windowsize = window.innerHeight;
     document.getElementById('contents').style.cssText = 'max-width : ' + (windowsize * 0.95) + 'px;';
+}
+
+
+// 画像として書き出す (html2canvas)
+function save_img() {
+    let img_area = document.createElement('div');
+    img_area.id = 'save-img-area';
+    let card = document.getElementById('bingo-card-box').cloneNode(true);
+    card.className = 'saved-card';
+    img_area.appendChild(card);
+    document.getElementsByTagName('body')[0].appendChild(img_area);
+    html2canvas(img_area, {backgroundColor:null}).then(canvas => { 
+        let downloadEle = document.createElement("a");
+        downloadEle.href = canvas.toDataURL("image/png");
+        downloadEle.download = "bingo.png";
+        downloadEle.click();
+    });
+    img_area.remove();
 }
 
 
