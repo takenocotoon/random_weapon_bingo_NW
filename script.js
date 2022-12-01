@@ -13,6 +13,7 @@ const weapons = [
     { no: 100, ja: 'L3リールガン', en: 'L-3 Nozzlenose', type: 'shooter' },
     { no: 110, ja: 'H3リールガン', en: 'H-3 Nozzlenose', type: 'shooter' },
     { no: 120, ja: 'ボトルガイザー', en: 'Squeezer', type: 'shooter' },
+    { no: 150, ja: 'スペースシューター', en: 'Splattershot Nova', type: 'shooter' },
 
     { no: 1000, ja: 'ノヴァブラスター', en: 'Luna Blaster', type: 'blaster' },
     { no: 1010, ja: 'ホットブラスター', en: 'Blaster', type: 'blaster' },
@@ -25,6 +26,7 @@ const weapons = [
     { no: 2010, ja: 'スプラローラー', en: 'Splat Roller', type: 'roller' },
     { no: 2020, ja: 'ヴァリアブルローラー', en: 'Flingza Roller', type: 'roller' },
     { no: 2030, ja: 'ダイナモローラー', en: 'Dynamo Roller', type: 'roller' },
+    { no: 2040, ja: 'ワイドローラー', en: 'Big Swig Roller', type: 'roller' },
 
     { no: 3000, ja: 'パブロ', en: 'Inkbrush', type: 'roller' },
     { no: 3010, ja: 'ホクサイ', en: 'Octobrush', type: 'roller' },
@@ -34,6 +36,7 @@ const weapons = [
     { no: 4030, ja: 'リッター4K', en: 'E-liter 4K', type: 'charger' },
     { no: 4050, ja: 'ソイチューバー', en: 'Goo Tuber', type: 'charger' },
     { no: 4060, ja: '14式竹筒銃・甲', en: 'Bamboozler 14 Mk I', type: 'charger' },
+    { no: 4070, ja: 'R-PEN/5H', en: 'Snipewriter 5H', type: 'charger' },
 
     { no: 5000, ja: 'バケットスロッシャー', en: 'Slosher', type: 'slosher' },
     { no: 5010, ja: 'ヒッセン', en: 'Tri-Slosher', type: 'slosher' },
@@ -69,6 +72,7 @@ const grizzco_weapons = [
     { no: 20020, ja: 'クマサン印のチャージャー', en: 'Grizzco Charger', type: 'grizzco' },
     { no: 20030, ja: 'クマサン印のスロッシャー', en: 'Grizzco Slosher', type: 'grizzco' },
     { no: 20040, ja: 'クマサン印のストリンガー', en: 'Grizzco Stringer', type: 'grizzco' },
+    { no: 20050, ja: 'クマサン印のワイパー', en: 'Grizzco Splatana', type: 'grizzco' },
 ];
 
 // ローカルストレージから読み込み
@@ -77,6 +81,7 @@ var bingo_center = localStorage.getItem('bingo_center');
 var bingo_size = localStorage.getItem('bingo_size');
 var bingo_background = localStorage.getItem('bingo_background');
 var bingo_effect = localStorage.getItem('bingo_effect');
+var bingo_text = localStorage.getItem('bingo_text');
 var bingo_count = 0;
 
 
@@ -102,7 +107,10 @@ function add_WeaponsOption() {
 
 // ビンゴカード生成
 function create_BingoCard() {
+
     let items = weapons.concat();
+
+
     bingo_center = document.getElementById('bingo-center').value;
     bingo_size = document.getElementById('bingo-size').value;
     bingo_background = document.getElementById('bingo-background').value;
@@ -111,13 +119,37 @@ function create_BingoCard() {
     localStorage.setItem('bingo_size', bingo_size);
     localStorage.setItem('bingo_background', bingo_background);
 
-    let center_num = Math.floor(bingo_size / 2)
+
+    let bingo_row = bingo_size
+    let bingo_column = bingo_size
+    if (bingo_size == 'all') {
+        bingo_row = 7
+        bingo_column = 8
+    }
+    for (; items.length < bingo_row*bingo_column - 1;) {
+        if (bingo_center == 'squid') items.push({no:'squid', ja:'FREE'})
+        else items.push({no:'kuma', ja:'FREE'})
+    }
+    let center_num = Math.ceil(bingo_row / 2) - 1
 
     const table = document.getElementById('bingo-card-table');
     table.innerHTML = '';
     document.getElementsByTagName('body')[0].className = bingo_background;
     
-    if ( bingo_center.substring(0,6) == 'weapon' ) {
+    if (items.length < bingo_row*bingo_column) {
+        if ( bingo_center == 'random') bingo_center = 'kuma'
+        if ( bingo_center.substring(0,6) == 'weapon' ) {
+            let weapon_num = bingo_center.substring(6);
+            var center_weapon = items[0];
+            bingo_center = 'kuma';
+            for (let w in grizzco_weapons) {
+                if ( grizzco_weapons[w]['no'] == weapon_num ) {
+                    bingo_center = 'weapon';
+                    center_weapon = grizzco_weapons[w];
+                }
+            };
+        }
+    } else if ( bingo_center.substring(0,6) == 'weapon' ) {
         let weapon_num = bingo_center.substring(6);
         var center_weapon = items[0];
         bingo_center = 'weapon';
@@ -133,32 +165,42 @@ function create_BingoCard() {
         };
     }
     mybingo = [];
-    for (let row = 0; row < bingo_size; row++) {
+    for (let row = 0; row < bingo_row; row++) {
         let tr = document.createElement('div');
         tr.className = 'tr';
         table.appendChild(tr);
-        for (let colmun = 0; colmun < bingo_size; colmun++) {
+        for (let column = 0; column < bingo_column; column++) {
             let td = document.createElement('div');
             td.className = 'td';
             let img = document.createElement('img');
+            let br = document.createElement('br');
+            let text = document.createElement('span');
             let item = '';
-            if ( row == center_num && colmun == center_num ) {
+            if ( row == center_num && column == center_num ) {
                 switch (bingo_center) {
                     case 'kuma':
                     case 'squid':
                         // td.style.backgroundImage = 'url(./images/'+bingo_center+'.png)';
                         img.src = './images/'+bingo_center+'.png';
+                        img.alt = 'FREE';
+                        img.title = 'FREE';
                         item = bingo_center;
                         break;
                     case 'random':
                         weapon = items.splice(Math.floor(Math.random() * items.length), 1)[0];
                         // td.style.backgroundImage = 'url(./images/weapons/' + weapon['no'] + '.png)';
                         img.src = './images/weapons/' + weapon['no'] + '.png';
+                        img.alt = weapon['ja'];
+                        img.title = weapon['ja'];
+                        text.innerText = weapon['ja'];
                         item = 'weapon' + weapon['no'];
                         break;
                     case 'weapon':
                         // td.style.backgroundImage = 'url(./images/weapons/' + center_weapon['no'] + '.png)';
                         img.src = './images/weapons/' + center_weapon['no'] + '.png';
+                        img.alt = center_weapon['ja'];
+                        img.title = center_weapon['ja'];
+                        text.innerText = center_weapon['ja'];
                         item = 'weapon' + center_weapon['no'];
                     default:
                 }
@@ -168,16 +210,24 @@ function create_BingoCard() {
                 img.src = './images/weapons/' + weapon['no'] + '.png';
                 img.alt = weapon['ja'];
                 img.title = weapon['ja'];
+                text.innerText = weapon['ja'];
                 // td.style.content = 'url(./images/weapons/' + weapon['no'] + '.png)';
                 item = 'weapon' + weapon['no'];
+                if (weapon['no'] == 'kuma' || weapon['no'] == 'squid' ) {
+                    item = weapon['no'];
+                    img.src = './images/' + weapon['no'] + '.png';
+                    text.innerText = '';
+                }
             };
             td.appendChild(img);
+            td.appendChild(br);
+            if (text.innerText) td.appendChild(text);
             td.addEventListener('click', function(){
-                clickCard(row, colmun, item);
+                clickCard(row, column, item);
             });
-            td.id = row + '-' + colmun;
+            td.id = row + '-' + column;
             tr.appendChild(td);
-            mybingo.push({row: row, colmun: colmun, item: item, done: false});
+            mybingo.push({row: row, column: column, item: item, done: false});
         };
     };
     localStorage.setItem('mybingo', JSON.stringify(mybingo));
@@ -191,9 +241,15 @@ function restore_BingoCard() {
     document.getElementsByTagName('body')[0].className = bingo_background;
 
     let row = 0;
-    let colmun = 0;
+    let column = 0;
+    let bingo_row = bingo_size
+    let bingo_column = bingo_size
+    if (bingo_size == 'all') {
+        bingo_row = 7
+        bingo_column = 8
+    }
     for (let mycard in mybingo) {
-        if (colmun == 0) {
+        if (column == 0) {
             var tr = document.createElement('div');
             tr.className = 'tr';
             table.appendChild(tr);
@@ -201,6 +257,8 @@ function restore_BingoCard() {
         let td = document.createElement('div');
         td.className = 'td';
         let img = document.createElement('img');
+        let br = document.createElement('br');
+        let text = document.createElement('span');
 
         if ( mybingo[mycard]['item'].substr(0,6) == 'weapon' ) {
             let weapon_num = mybingo[mycard]['item'].substr(6);
@@ -218,8 +276,12 @@ function restore_BingoCard() {
             img.src = './images/weapons/' + myweapon['no'] + '.png';
             img.alt = myweapon['ja'];
             img.title = myweapon['ja'];
+            text.innerText = myweapon['ja'];
         } else {
             img.src = './images/'+mybingo[mycard]['item']+'.png';
+            img.alt = 'FREE';
+            img.title = 'FREE';
+            // text.innerText = 'FREE';
         }
         if (mybingo[mycard]['done']) {
             td.classList.add('done');
@@ -227,16 +289,18 @@ function restore_BingoCard() {
             td.classList.remove('done');
         }
         td.appendChild(img);
+        td.appendChild(br);
+        if (text.innerText) td.appendChild(text);
         td.addEventListener('click', function(){
-            clickCard(mybingo[mycard]['row'], mybingo[mycard]['colmun'], mybingo[mycard]['item']);
+            clickCard(mybingo[mycard]['row'], mybingo[mycard]['column'], mybingo[mycard]['item']);
         });
-        td.id = row + '-' + colmun;
+        td.id = row + '-' + column;
         tr.appendChild(td);
 
         
-        colmun++;
-        if (colmun >= bingo_size) {
-            colmun = 0;
+        column++;
+        if (column >= bingo_column) {
+            column = 0;
             row++;
         }
     };
@@ -245,14 +309,21 @@ function restore_BingoCard() {
 
 
 // ビンゴクリック
-function clickCard(row, colmun, item) {
-    let mycard = document.getElementById(row + '-' + colmun);
+function clickCard(row, column, item) {
+    let bingo_row = bingo_size
+    let bingo_column = bingo_size
+    if (bingo_size == 'all') {
+        bingo_row = 7
+        bingo_column = 8
+    }
+
+    let mycard = document.getElementById(row + '-' + column);
     if (mycard.classList.contains('done')) {
         mycard.classList.remove('done');
-        mybingo[row * bingo_size + colmun]['done'] = false;
+        mybingo[row * bingo_column + column]['done'] = false;
     } else {
         mycard.classList.add('done');
-        mybingo[row * bingo_size + colmun]['done'] = true;
+        mybingo[row * bingo_column + column]['done'] = true;
     }
 
     // 花吹雪
@@ -273,41 +344,77 @@ function clickCard(row, colmun, item) {
 // ビンゴになったかチェック
 function checkBingo() {
     for (let k in mybingo) {
-        let mycard = document.getElementById(mybingo[k]['row'] + '-' + mybingo[k]['colmun']);
-        mycard.classList.remove('reach');
-        mycard.classList.remove('bingo');
+        let mycard = document.getElementById(mybingo[k]['row'] + '-' + mybingo[k]['column']);
+        if (mycard) {
+            mycard.classList.remove('reach');
+            mycard.classList.remove('bingo');
+        }
     }
+
+    let bingo_row = bingo_size
+    let bingo_column = bingo_size
+    if (bingo_size == 'all') {
+        bingo_row = 7
+        bingo_column = 8
+    }
+
     let bingo_num = 0;
     let reach_num = 0;
-    for (let row = 0; row < bingo_size; row++) {
+    for (let row = 0; row < bingo_row; row++) {
         var done_num = 0;
-        for (let colmun = 0; colmun < bingo_size; colmun++) {
-            if (mybingo[row * bingo_size + colmun]['done']) {
+        for (let column = 0; column < bingo_column; column++) {
+            if (mybingo[row * bingo_column + column]['done']) {
                 done_num++;
             }
         }
-        if (done_num == bingo_size-1) {
+        if (done_num == bingo_column-1) {
             console.log('リーチ');
             reach_num++;
-            for (let colmun = 0; colmun < bingo_size; colmun++) {
-                let mycard = document.getElementById(row + '-' + colmun);
+            for (let column = 0; column < bingo_column; column++) {
+                let mycard = document.getElementById(row + '-' + column);
                 if (!mycard.classList.contains('done')) {
                     mycard.classList.add('reach');
                 }
             }
-        } else if (done_num == bingo_size) {
+        } else if (done_num == bingo_column) {
             console.log('ビンゴ');
             bingo_num++;
-            for (let colmun = 0; colmun < bingo_size; colmun++) {
-                let mycard = document.getElementById(row + '-' + colmun);
+            for (let column = 0; column < bingo_column; column++) {
+                let mycard = document.getElementById(row + '-' + column);
                 mycard.classList.add('bingo');
             }
         }
     }
-    for (let colmun = 0; colmun < bingo_size; colmun++) {
+    for (let column = 0; column < bingo_column; column++) {
         var done_num = 0;
-        for (let row = 0; row < bingo_size; row++) {
-            if (mybingo[row * bingo_size + colmun]['done']) {
+        for (let row = 0; row < bingo_row; row++) {
+            if (mybingo[row * bingo_column + column]['done']) {
+                done_num++;
+            }
+        }
+        if (done_num == bingo_row-1) {
+            console.log('リーチ');
+            reach_num++;
+            for (let row = 0; row < bingo_row; row++) {
+                let mycard = document.getElementById(row + '-' + column);
+                if (!mycard.classList.contains('done')) {
+                    mycard.classList.add('reach');
+                }
+            }
+        } else if (done_num == bingo_row) {
+            console.log('ビンゴ');
+            bingo_num++;
+            for (let row = 0; row < bingo_row; row++) {
+                let mycard = document.getElementById(row + '-' + column);
+                mycard.classList.add('bingo');
+            }
+        }
+    }
+
+    if (bingo_size != 'all') {
+        var done_num = 0;
+        for (let row = 0; row < bingo_row; row++) {
+            if (mybingo[row * bingo_column + row]['done']) {
                 done_num++;
             }
         }
@@ -315,7 +422,7 @@ function checkBingo() {
             console.log('リーチ');
             reach_num++;
             for (let row = 0; row < bingo_size; row++) {
-                let mycard = document.getElementById(row + '-' + colmun);
+                let mycard = document.getElementById(row + '-' + row);
                 if (!mycard.classList.contains('done')) {
                     mycard.classList.add('reach');
                 }
@@ -324,55 +431,32 @@ function checkBingo() {
             console.log('ビンゴ');
             bingo_num++;
             for (let row = 0; row < bingo_size; row++) {
-                let mycard = document.getElementById(row + '-' + colmun);
+                let mycard = document.getElementById(row + '-' + row);
                 mycard.classList.add('bingo');
             }
         }
-    }
-    var done_num = 0;
-    for (let row = 0; row < bingo_size; row++) {
-        if (mybingo[row * bingo_size + row]['done']) {
-            done_num++;
-        }
-    }
-    if (done_num == bingo_size-1) {
-        console.log('リーチ');
-        reach_num++;
+        var done_num = 0;
         for (let row = 0; row < bingo_size; row++) {
-            let mycard = document.getElementById(row + '-' + row);
-            if (!mycard.classList.contains('done')) {
-                mycard.classList.add('reach');
+            if (mybingo[row * bingo_size + (bingo_size - 1 - row)]['done']) {
+                done_num++;
             }
         }
-    } else if (done_num == bingo_size) {
-        console.log('ビンゴ');
-        bingo_num++;
-        for (let row = 0; row < bingo_size; row++) {
-            let mycard = document.getElementById(row + '-' + row);
-            mycard.classList.add('bingo');
-        }
-    }
-    var done_num = 0;
-    for (let row = 0; row < bingo_size; row++) {
-        if (mybingo[row * bingo_size + (bingo_size - 1 - row)]['done']) {
-            done_num++;
-        }
-    }
-    if (done_num == bingo_size-1) {
-        console.log('リーチ');
-        reach_num++;
-        for (let row = 0; row < bingo_size; row++) {
-            let mycard = document.getElementById(row + '-' + (bingo_size - 1 - row));
-            if (!mycard.classList.contains('done')) {
-                mycard.classList.add('reach');
+        if (done_num == bingo_size-1) {
+            console.log('リーチ');
+            reach_num++;
+            for (let row = 0; row < bingo_size; row++) {
+                let mycard = document.getElementById(row + '-' + (bingo_size - 1 - row));
+                if (!mycard.classList.contains('done')) {
+                    mycard.classList.add('reach');
+                }
             }
-        }
-    } else if (done_num == bingo_size) {
-        console.log('ビンゴ');
-        bingo_num++;
-        for (let row = 0; row < bingo_size; row++) {
-            let mycard = document.getElementById(row + '-' + (bingo_size - 1 - row));
-            mycard.classList.add('bingo');
+        } else if (done_num == bingo_size) {
+            console.log('ビンゴ');
+            bingo_num++;
+            for (let row = 0; row < bingo_size; row++) {
+                let mycard = document.getElementById(row + '-' + (bingo_size - 1 - row));
+                mycard.classList.add('bingo');
+            }
         }
     }
 
@@ -416,18 +500,31 @@ function loadLocalStorage() {
     if (bingo_center) {
         document.getElementById('bingo-center').value = bingo_center;
     };
+
     if (bingo_size) {
         document.getElementById('bingo-size').value = bingo_size;
     };
+
     if (bingo_background) {
         document.getElementById('bingo-background').value = bingo_background;
     };
+    document.getElementById('bingo-background').addEventListener('change', change_background);
+
     if (bingo_effect == 'off') {
         document.getElementById('bingo-effect').checked = false;
     } else {
         bingo_effect = 'on';
     };
-    document.getElementById('bingo-effect').addEventListener('change', changeEffect)
+    document.getElementById('bingo-effect').addEventListener('change', changeEffect);
+
+    if (bingo_text == 'on') {
+        document.getElementById('bingo-text').checked = true;
+        document.getElementById('bingo-card-table').className = 'text-on';
+    } else {
+        document.getElementById('bingo-text').checked = false;
+    };
+    document.getElementById('bingo-text').addEventListener('change', change_text_on);
+
     if (mybingo) {
         mybingo = JSON.parse(mybingo);
         restore_BingoCard();
@@ -440,7 +537,7 @@ function loadLocalStorage() {
 // 横幅最大をWindowの縦サイズにする
 function setWindowSize() {
     let windowsize = window.innerHeight;
-    document.getElementById('contents').style.cssText = 'max-width : ' + (windowsize * 0.95) + 'px;';
+    document.getElementById('contents').style.cssText = 'max-width : ' + (windowsize * 0.9) + 'px;';
 }
 
 
@@ -461,6 +558,23 @@ function save_img() {
     img_area.remove();
 }
 
+
+function change_background(){
+    bingo_background = document.getElementById('bingo-background').value;
+    localStorage.setItem('bingo_background', bingo_background);
+    document.getElementsByTagName('body')[0].className = bingo_background;
+}
+
+function change_text_on() {
+    bingo_text_element = document.getElementById('bingo-text');
+    if (bingo_text_element.checked) {
+        localStorage.setItem('bingo_text', 'on');
+        document.getElementById('bingo-card-table').className = 'text-on';
+    } else  {
+        localStorage.setItem('bingo_text', 'off');
+        document.getElementById('bingo-card-table').className = '';
+    }
+}
 
 // 実行
 window.onload = function() {

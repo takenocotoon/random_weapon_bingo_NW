@@ -45,14 +45,16 @@
           <select id="bingo-size">
             <option value="5">5 × 5</option>
             <option value="7">7 × 7</option>
+            <option value="all">8 × 7 (全ブキ)</option>
+            <option value="8">8 × 8</option>
           </select>
           <br class="clearfix">
           <label for="bingo-background">背景</label>
           <select id="bingo-background">
-            <option value="salmonrun"     >サーモンラン</option>
-            <option value="battle"        >バトル</option>
             <option value="salmon-orange" >オレンジ</option>
             <option value="ikatako"       >グレー</option>
+            <option value="salmonrun"     >サーモンラン</option>
+            <option value="battle"        >バトル</option>
             <option value="transparent"   >透過</option>
             <option value="green"         >グリーンバック</option>
           </select>
@@ -64,6 +66,8 @@
           </select>
           <br class="clearfix"> -->
           <label for="bingo-effect" class="label_c"><input type="checkbox" class="check" id="bingo-effect" checked><span class="checktitle">ビンゴ演出</span></label>
+          <br class="clearfix">
+          <label for="bingo-text" class="label_c"><input type="checkbox" class="check" id="bingo-text" value="text-on"><span class="checktitle">テキスト表示</span></label>
           <br class="clearfix">
         </div>
         <button type="button" id="create-card" onclick="create_BingoCard();">ビンゴカードを作る<br>▼</button>
