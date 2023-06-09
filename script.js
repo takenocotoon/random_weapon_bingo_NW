@@ -21,6 +21,7 @@ const weapons = [
     { no: 1030, ja: 'クラッシュブラスター', en: 'Clash Blaster', type: 'blaster' },
     { no: 1040, ja: 'ラピッドブラスター', en: 'Rapid Blaster', type: 'blaster' },
     { no: 1050, ja: 'Rブラスターエリート', en: 'Rapid Blaster Pro', type: 'blaster' },
+    { no: 1060, ja: 'S-BLAST92', en: "S-BLAST '92", type: 'blaster' },
 
     { no: 2000, ja: 'カーボンローラー', en: 'Carbon Roller', type: 'roller' },
     { no: 2010, ja: 'スプラローラー', en: 'Splat Roller', type: 'roller' },
@@ -30,6 +31,7 @@ const weapons = [
 
     { no: 3000, ja: 'パブロ', en: 'Inkbrush', type: 'roller' },
     { no: 3010, ja: 'ホクサイ', en: 'Octobrush', type: 'roller' },
+    { no: 3020, ja: 'フィンセント', en: 'Painbrush', type: 'roller' },
 
     { no: 4000, ja: 'スクイックリンα', en: 'Classic Squiffer', type: 'charger' },
     { no: 4010, ja: 'スプラチャージャー', en: 'Splat Charger', type: 'charger' },
@@ -123,8 +125,8 @@ function create_BingoCard() {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 7
-        bingo_column = 8
+        bingo_row = 10
+        bingo_column = 6
     }
     for (; items.length < bingo_row*bingo_column - 1;) {
         if (bingo_center == 'squid') items.push({no:'squid', ja:'FREE'})
@@ -245,8 +247,8 @@ function restore_BingoCard() {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 7
-        bingo_column = 8
+        bingo_row = 10
+        bingo_column = 6
     }
     for (let mycard in mybingo) {
         if (column == 0) {
@@ -313,8 +315,8 @@ function clickCard(row, column, item) {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 7
-        bingo_column = 8
+        bingo_row = 10
+        bingo_column = 6
     }
 
     let mycard = document.getElementById(row + '-' + column);
@@ -354,8 +356,8 @@ function checkBingo() {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 7
-        bingo_column = 8
+        bingo_row = 10
+        bingo_column = 6
     }
 
     let bingo_num = 0;
