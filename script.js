@@ -45,12 +45,14 @@ const weapons = [
     { no: 5020, ja: 'スクリュースロッシャー', en: 'Sloshing Machine', type: 'slosher' },
     { no: 5030, ja: 'オーバーフロッシャー', en: 'Bloblobber', type: 'slosher' },
     { no: 5040, ja: 'エクスプロッシャー', en: 'Explosher', type: 'slosher' },
+    { no: 5050, ja: "モップリン", en: "Dread Wringer", type: "slosher" },
 
     { no: 6000, ja: 'スプラスピナー', en: 'Mini Splatling', type: 'splatling' },
     { no: 6010, ja: 'バレルスピナー', en: 'Heavy Splatling', type: 'splatling' },
     { no: 6020, ja: 'ハイドラント', en: 'Hydra Splatling', type: 'splatling' },
     { no: 6030, ja: 'クーゲルシュライバー', en: 'Ballpoint Splatling', type: 'splatling' },
     { no: 6040, ja: 'ノーチラス47', en: 'Nautilus 47', type: 'splatling' },
+    { no: 6050, ja: "イグザミナー", en: "Heavy Edit Splatling", type: "splatling" },
 
     { no: 7000, ja: 'スパッタリー', en: 'Dapple Dualies', type: 'dualies' },
     { no: 7010, ja: 'スプラマニューバー', en: 'Splat Dualies', type: 'dualies' },
@@ -75,6 +77,7 @@ const grizzco_weapons = [
     { no: 20030, ja: 'クマサン印のスロッシャー', en: 'Grizzco Slosher', type: 'grizzco' },
     { no: 20040, ja: 'クマサン印のストリンガー', en: 'Grizzco Stringer', type: 'grizzco' },
     { no: 20050, ja: 'クマサン印のワイパー', en: 'Grizzco Splatana', type: 'grizzco' },
+    { no: 20060, ja: "クマサン印のマニューバー", en: "Grizzco Dualies", type: "grizzco" },
 ];
 
 // ローカルストレージから読み込み
@@ -125,8 +128,8 @@ function create_BingoCard() {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 10
-        bingo_column = 6
+        bingo_row = 9
+        bingo_column = 7
     }
     for (; items.length < bingo_row*bingo_column - 1;) {
         if (bingo_center == 'squid') items.push({no:'squid', ja:'FREE'})
@@ -247,8 +250,8 @@ function restore_BingoCard() {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 10
-        bingo_column = 6
+        bingo_row = 9
+        bingo_column = 7
     }
     for (let mycard in mybingo) {
         if (column == 0) {
@@ -315,8 +318,8 @@ function clickCard(row, column, item) {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 10
-        bingo_column = 6
+        bingo_row = 9
+        bingo_column = 7
     }
 
     let mycard = document.getElementById(row + '-' + column);
@@ -356,8 +359,8 @@ function checkBingo() {
     let bingo_row = bingo_size
     let bingo_column = bingo_size
     if (bingo_size == 'all') {
-        bingo_row = 10
-        bingo_column = 6
+        bingo_row = 9
+        bingo_column = 7
     }
 
     let bingo_num = 0;
