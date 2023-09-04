@@ -1,0 +1,218 @@
+@import "variables";
+
+/** ビンゴカード **/
+#p-bingo-card-box {
+    /* position: relative; */
+    width: 100%;
+    
+    border: 3px solid #FFF;
+    border-radius: 2vw;
+    /* outline: solid 2px #333; */
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .2), 0 0 0 2px #333;
+    
+    &.card-salmonrun {
+        background-image: url('../img/background-title.webp'), url('../img/background.webp');
+        background-position: top right;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+        padding-top: 20%;
+        padding-bottom: 5%;
+    }
+    
+    &.card-battle {
+        background-image: url('../img/background2-title.webp'), url('../img/background2.webp');
+        background-position: top right;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+        padding-top: 20%;
+        padding-bottom: 5%;
+    }
+    
+    &.card-orange {
+        background-image: url('../img/background3.webp');
+        background-repeat: repeat;
+    }
+    
+    &.card-gray {
+        background-image: url('../img/background4.webp');
+        background-repeat: repeat;
+    }
+    
+    &.card-simple {
+        border: none;
+        box-shadow: none;
+        
+        #p-bingo-card-table .p-tr > div {
+            background: rgba(0, 0, 0, .1);
+            border-radius: 100%;
+            background-size: contain;
+            
+            &.is-done {
+                background-color: rgba(0, 0, 0, 0);
+            }
+            &.is-bingo {
+                background-image: url(../img/paint_bingo.webp);
+            }
+        }
+    }
+    
+    #p-bingo-card-table {
+        width: 100%;
+        padding-bottom: 1%;
+        
+        .p-tr {
+            display: flex;
+            margin: 1% 0 0 1%;
+            
+            >div {
+                position: relative;
+                margin: 0 1% 0 0;
+                padding: 0;
+                
+                background: rgba(255, 255, 255, .8);
+                background-repeat: no-repeat;
+                background-position: top center;
+                background-size: contain;
+                border-radius: 30%;
+                
+                flex-direction: row;
+                text-align: center;
+                vertical-align: middle;
+                font-size: 0;
+                
+                &.is-done {
+                    background-image: url(../img/paint.webp);
+                    background-color: rgba(0, 0, 0, .8);
+                    img {
+                        filter: grayscale(100%);
+                    }
+                }
+                
+                &.is-bingo {
+                    background-image: url(../img/paint.webp);
+                    background-color: #ff2900;
+                    img {
+                        filter: grayscale(100%);
+                    }
+                }
+                
+                &.is-reach {
+                    background-color: rgba(255, 218, 8, 0.7);
+                }
+                
+                img {
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                    vertical-align:top;
+                }
+            }
+        }
+    }
+}
+
+.theme-green, .theme-transparent {
+    #p-bingo-card-box.card-simple #p-bingo-card-table > .p-tr > div {
+        border-radius: 100%;
+        background-size: contain;
+    }
+}
+.theme-green #p-bingo-card-box {
+    box-shadow: none;
+}
+.theme-green #p-bingo-card-box.card-simple #p-bingo-card-table > .p-tr > div {
+    background-color: rgba(0, 0, 0, 1);
+    
+    &.is-reach {
+        background-color: rgba(255, 218, 8, 1);
+    }
+    
+}
+.theme-transparent #p-bingo-card-box.card-simple #p-bingo-card-table > .p-tr > div {
+    background-color: rgba(0, 0, 0, .8);
+    img {
+        filter: grayscale(0%);
+    }
+}
+
+
+#p-bingo-card-table.is-text-on {
+    .p-tr > div > span {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        /* margin: 0 0.1rem 0.8rem; */
+        padding: 0.3rem;
+        
+        border-radius: 1rem;
+        text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
+            -1px 1px 0 #FFF, 1px -1px 0 #FFF,
+            0px 1px 0 #FFF,  0 -1px 0 #FFF,
+            -1px 0 0 #FFF, 1px 0 0 #FFF;
+        
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        text-align: center;
+        color: #000;
+        
+        @include mq('sp') {
+            font-size: 0.5rem;
+            line-height: 0.5rem;
+        }
+    }
+    
+    &.card-simple >div > span {
+        color: #FFF;
+        text-shadow: #000 1px 1px 2px;
+    }
+    
+    .p-tr > div.is-bingo, .p-tr > div.is-done {
+        > span {
+            display: none;
+        }
+    }
+}
+
+
+/** メッセージ **/
+#p-bingo-message {
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 3rem;
+    margin-top: 20px;
+    height: 6rem;
+    
+    @include mq('sp') {
+        font-size: 1.2rem;
+    }
+    
+    #js-bingo-message {
+        color: #000;
+        background-color: rgba(255, 100, 100, .7);
+        width: 100%;
+    }
+    
+    #js-reach-message {
+        color: #FFF;
+        background-color: rgba(0, 0, 0, .7);
+        width: 100%;
+    }
+}
+.theme-green #p-bingo-message #js-bingo-message {
+    background-color: rgba(255, 100, 100, 1);
+}
+.theme-green #p-bingo-message #js-reach-message {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/** tools-footer **/
+#p-tools-footer {
+    display: flex;
+    width: 100%;
+    
+    button {
+        width: 100%;
+        margin: 1rem;
+    }
+}

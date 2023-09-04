@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Splatoon3 ブキビンゴ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="og:title" content="Splatoon3 ブキビンゴ">
+    <meta name="description"    content="A tool to play Bingo with Splatoon 3 weapons.">
+    <meta name="og:description" content="A tool to play Bingo with Splatoon 3 weapons.">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:type" content="website">
+    <link rel="canonical"      href="https://takenocotoon.github.io/random_weapon_bingo_nw/">
+    <link rel="INDEX" href="./">    <meta property="og:url" content="https://takenocotoon.github.io/random_weapon_bingo_nw/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@takenocotoon">
+    <meta name="theme-color" content="#FE6345">
+    <meta name="og:image"          content="https://takenocotoon.github.io/random_weapon_bingo_nw/icon.png">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="apple-touch-icon"      href="./icon.png">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./css/style.css?230904181811">
+    <link rel="stylesheet" href="./remixicon/remixicon.css?230904181811">
+    <script type="module" src="./js/main.js?230904181811"></script>
+</head>
+
+<body lang="ja">
+<div id="l-main-container">
+
+<header>
+    <h1><span lang="ja">Splatoon3 ブキビンゴ</span><span lang="en">Splatoon3 Weapon Bingo</span></h1>
+    <button class="c-hamburger c-no-print" id="js-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+<nav class="c-no-print">
+    <ul>
+        <li>
+            <a href="#" class="js-submenu c-menu-strong" id="js-menu--bingo-settings">
+                <i class="ri-arrow-right-double-line"></i>
+                <span lang="ja">ビンゴ設定</span>
+                <span lang="en">Bingo Settings</span>
+                <i class="ri-arrow-left-double-line"></i>
+            </a>
+                        <div>
+                <button type="button" id="js-createCard-btn-t" class="c-wide-btn c-no-print">
+                    <span lang="ja">ビンゴカードを生成する</span>
+                    <span lang="en">Generate the Bingo Card</span>
+                </button>
+                <div class="p-menu-form c-no-print">
+                    <div>
+                        <span lang="ja">中央</span>
+                        <span lang="en">Center</span>
+                    </div>
+                    <input type="radio" name="settingsCenter" value="kuma" id="js-settingsCenter--kuma" checked><label for="js-settingsCenter--kuma" id="js-settingsCenter--kuma-label"><span lang="ja">FREE(クマサン)</span><span lang="en">FREE(Mr.Grizz)</span></label><input type="radio" name="settingsCenter" value="squid" id="js-settingsCenter--squid"><label for="js-settingsCenter--squid" id="js-settingsCenter--squid-label"><span lang="ja">FREE(イカ)</span><span lang="en">FREE(Squid)</span></label><input type="radio" name="settingsCenter" value="random" id="js-settingsCenter--random"><label for="js-settingsCenter--random" id="js-settingsCenter--random-label"><span lang="ja">ランダム</span><span lang="en">Random</span></label><input type="radio" name="settingsCenter" value="centerGrizzco" id="js-settingsCenter--centerGrizzco"><label for="js-settingsCenter--centerGrizzco" id="js-settingsCenter--centerGrizzco-label"><span lang="ja">クマブキ</span><span lang="en">Grizzco Weapon</span></label><input type="radio" name="settingsCenter" value="centerWeapon" id="js-settingsCenter--centerWeapon"><label for="js-settingsCenter--centerWeapon" id="js-settingsCenter--centerWeapon-label"><span lang="ja">お気に入りブキ</span><span lang="en">Preferred Weapon</span></label>                    <br>
+                </div>
+                <div class="p-menu-form c-no-print">
+                    <div>
+                        <span lang="ja">大きさ</span>
+                        <span lang="en">Size</span>
+                    </div>
+                    <input type="radio" name="settingsSize" value="3" id="js-settingsSize--3"><label for="js-settingsSize--3"><span lang="ja">3 × 3 (9)</span><span lang="en">3 × 3 (9)</span></label><input type="radio" name="settingsSize" value="5" id="js-settingsSize--5" checked><label for="js-settingsSize--5"><span lang="ja">5 × 5 (25)</span><span lang="en">5 × 5 (25)</span></label><input type="radio" name="settingsSize" value="7" id="js-settingsSize--7"><label for="js-settingsSize--7"><span lang="ja">7 × 7 (49)</span><span lang="en">7 × 7 (49)</span></label><input type="radio" name="settingsSize" value="8" id="js-settingsSize--8"><label for="js-settingsSize--8"><span lang="ja">8 × 8 (64)</span><span lang="en">8 × 8 (64)</span></label><input type="radio" name="settingsSize" value="9" id="js-settingsSize--9"><label for="js-settingsSize--9"><span lang="ja">9 × 9 (81)</span><span lang="en">9 × 9 (81)</span></label>                </div>
+                <div class="p-menu-form">
+                    <div>
+                        <span lang="ja">対象ブキ </span>
+                        <span lang="en">Target Weapons </span>
+                        <span id="js-weapons">59</span>
+                        <span lang="ja">個</span>
+                    </div>
+                                        <input type="checkbox" name="settingsWeapons--grizzco" value="true" id="js-settingsWeapons--grizzco"><label for="js-settingsWeapons--grizzco"><span lang="ja">クマブキ</span><span lang="en">Grizzco Weapons</span></label>
+                    <input type="checkbox" name="settingsWeapons--minor" value="true" id="js-settingsWeapons--minor"><label for="js-settingsWeapons--minor"><span lang="ja">マイナーチェンジブキ</span><span lang="en">Variant Weapons</span></label>
+                    <input type="checkbox" name="settingsWeapons--scope" value="true" id="js-settingsWeapons--scope"><label for="js-settingsWeapons--scope"><span lang="ja">スコープ</span><span lang="en">Scopes</span></label>
+                    <input type="checkbox" name="settingsWeapons--hero" value="true" id="js-settingsWeapons--hero"><label for="js-settingsWeapons--hero"><span lang="ja">ヒーローブキ</span><span lang="en">Hero Weapons</span></label>
+                </div>
+                <button type="button" id="js-createCard-btn-b" class="c-wide-btn c-no-print">
+                    <span lang="ja">ビンゴカードを生成する</span>
+                    <span lang="en">Generate the Bingo Card</span>
+                </button>
+            </div>
+
+        </li>
+        <li>
+            <a href="#" class="js-submenu" id="js-menu--settings">
+                <i class="ri-settings-3-fill"></i>
+                <span lang="ja">デザイン設定</span>
+                <span lang="en">Design Settings</span>
+            </a>
+                        <div>
+                <div class="p-menu-form">
+                    <div>
+                        <span lang="ja">ビンゴ背景</span>
+                        <span lang="en">Bingo Background</span>
+                    </div>
+                    <input type="radio" name="settingsBingoTheme" value="orange" id="js-settingsBingoTheme--orange"><label for="js-settingsBingoTheme--orange"><span lang="ja">オレンジ</span><span lang="en">Orange</span></label><input type="radio" name="settingsBingoTheme" value="gray" id="js-settingsBingoTheme--gray"><label for="js-settingsBingoTheme--gray"><span lang="ja">グレー</span><span lang="en">Gray</span></label><input type="radio" name="settingsBingoTheme" value="salmonrun" id="js-settingsBingoTheme--salmonrun" checked><label for="js-settingsBingoTheme--salmonrun"><span lang="ja">サーモンラン</span><span lang="en">Salmon Run</span></label><input type="radio" name="settingsBingoTheme" value="battle" id="js-settingsBingoTheme--battle"><label for="js-settingsBingoTheme--battle"><span lang="ja">バトル</span><span lang="en">Battle</span></label><input type="radio" name="settingsBingoTheme" value="simple" id="js-settingsBingoTheme--simple"><label for="js-settingsBingoTheme--simple"><span lang="ja">シンプル</span><span lang="en">Simple</span></label>                </div>
+                <div class="p-menu-form">
+                    <div>
+                        <span lang="ja">カラーテーマ</span>
+                        <span lang="en">Color Scheme</span>
+                    </div>
+                    <input type="radio" name="settingsTheme" value="default" id="js-settingsTheme--default" checked><label for="js-settingsTheme--default"><span lang="ja">システム設定に従う</span><span lang="en">Follow System Setting</span></label><input type="radio" name="settingsTheme" value="light" id="js-settingsTheme--light"><label for="js-settingsTheme--light"><span lang="ja">ライト</span><span lang="en">Light</span></label><input type="radio" name="settingsTheme" value="dark" id="js-settingsTheme--dark"><label for="js-settingsTheme--dark"><span lang="ja">ダーク</span><span lang="en">Dark</span></label><input type="radio" name="settingsTheme" value="transparent" id="js-settingsTheme--transparent"><label for="js-settingsTheme--transparent"><span lang="ja">透過(配信用)</span><span lang="en">Transparency (for Streaming)</span></label><input type="radio" name="settingsTheme" value="green" id="js-settingsTheme--green"><label for="js-settingsTheme--green"><span lang="ja">グリーンバック(配信用)</span><span lang="en">Chroma Key</span></label>                </div>
+                <div class="p-menu-form">
+                    <div>Language</div>
+                    <input type="radio" name="settingsLanguage" value="ja" id="js-settingsLanguage--ja" checked><label for="js-settingsLanguage--ja">日本語</label><input type="radio" name="settingsLanguage" value="en" id="js-settingsLanguage--en"><label for="js-settingsLanguage--en">English</label>                </div>
+            </div>
+        </li>
+        <li>
+            <a href="#" class="js-submenu" id="js-menu--backup">
+                <i class="ri-file-download-fill"></i>
+                <span lang="ja">バックアップ</span>
+                <span lang="en">Backup</span>
+            </a>
+                        <div>
+                <div class="p-menu-form">
+                    <div>
+                        <span lang="ja">データ保存スロット</span>
+                        <span lang="en">Data Storage Slots</span>
+                    </div>
+                    <input type="radio" name="saveDataSlot" value="1" id="js-saveDataSlot--1"><label for="js-saveDataSlot--1">1</label><input type="radio" name="saveDataSlot" value="2" id="js-saveDataSlot--2"><label for="js-saveDataSlot--2">2</label><input type="radio" name="saveDataSlot" value="3" id="js-saveDataSlot--3"><label for="js-saveDataSlot--3">3</label>                        <button type="button" id="js-saveDataSlot-btn">
+                            <span lang="ja">保存</span>
+                            <span lang="en">Save</span>
+                        </button>
+                        <button type="button" id="js-loadDataSlot-btn">
+                            <span lang="ja">復元</span>
+                            <span lang="en">Restore</span>
+                        </button>
+                </div>
+                <div class="p-menu-form">
+                    <div>
+                        Export
+                    </div>
+                        <button type="button" id="js-saveJson-btn">
+                            <span lang="ja">バックアップデータをダウンロード</span>
+                            <span lang="en">Download Backup Data</span>
+                        </button>
+                </div>
+                <div class="p-menu-form">
+                    <div>
+                        Import
+                    </div>
+                        <input type="file" id="js-loadJson-input"><button type="button" id="js-loadJson-btn">
+                            <span lang="ja">ファイルからデータを読み込む</span>
+                            <span lang="en">Load Data from File</span>
+                        </button>
+                </div>
+                <!-- <button type="button" id="js-set-star1-button">Clear</button> -->
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main>
+    <canvas id="js-confetti"></canvas>
+    <div id="p-contents">
+        <article>
+            <section>
+                <button type="button" id="js-createCard-btn" class="c-wide-btn c-no-print">
+                    <span lang="ja">ビンゴカードを生成する</span>
+                    <span lang="en">Generate the Bingo Card</span>
+                </button>
+                <div class="c-no-print">
+                                        <input type="checkbox" name="settingsOption--effect" value="true" id="js-settingsOption--effect" checked><label for="js-settingsOption--effect" id="js-settingsOption--effect--label"><span lang="ja">ビンゴ演出</span><span lang="en">Bingo Effects</span></label>
+                    <input type="checkbox" name="settingsOption--text" value="true" id="js-settingsOption--text"><label for="js-settingsOption--text" id="js-settingsOption--text--label"><span lang="ja">ブキ名表示</span><span lang="en">Display Weapon Name</span></label>
+                </div>
+                <div id="p-bingo-box">
+                    <div id="p-bingo-card-box">
+                        <div id="p-bingo-card-table">
+                        </div>
+                    </div>
+                    <div id="p-bingo-message" class="c-no-print">
+                        <div id="js-bingo-message"></div>
+                        <div id="js-reach-message"></div>
+                    </div>
+                </div>
+                <div id="p-tools-footer" class="c-no-print">
+                        <button type="button" id="js-download-btn">
+                        <span id="js-download-btn--before">
+                            <i class="ri-download-2-fill"></i>
+                            <span lang="ja">画像として保存する</span>
+                            <span lang="en">Save as Image</span>
+                        </span>
+                        <span id="js-download-btn--processing" style="display:none;">
+                            <i class="ri-hourglass-line"></i>
+                            <span lang="ja">画像生成中</span>
+                            <span lang="en">Generating Image</span>
+                        </span>
+                    </button>
+                    
+                    <button type="button" onclick="window.print();">
+                        <i class="ri-printer-fill"></i>
+                        <span lang="ja">印刷する</span>
+                        <span lang="en">Print</span>
+                    </button>
+                </div>
+            </section>
+        </article>
+    </div>
+</main>
+<dialog id="js-centerGrizzcoDialog">
+    <p class="p-menu-form">
+        <div>
+            <span lang="ja">クマブキ</span>
+            <span lang="en">Grizzco Weapon</span>
+        </div>
+        <div id="p-centerGrizzcoBox" class="p-bukiBox">
+            
+        </div>
+    </p>
+    <form method="dialog">
+        <button class="c-close"><i class="ri-close-fill"></i></button>
+    </form>
+</dialog>
+<dialog id="js-centerWeaponDialog">
+    <p class="p-menu-form">
+        <div>
+            <span lang="ja">お気に入りブキ</span>
+            <span lang="en">Preferred Weapon</span>
+        </div>
+        <div id="p-centerWeaponBox" class="p-bukiBox">
+            
+        </div>
+    </p>
+    <form method="dialog">
+        <button class="c-close"><i class="ri-close-fill"></i></button>
+    </form>
+</dialog>
+
+
+<footer><div>
+    <address>
+        <a href="https://twitter.com/takenocotoon" target="_blank" rel="noopener" class="c-no-underline"><i class="ri-twitter-fill"></i></a>
+        <a href="https://ika.queloud.net/@takenocotoon" target="_blank" rel="noopener" class="c-no-underline"><i class="ri-mastodon-fill"></i></a>
+        <!-- <a href="https://github.com/takenocotoon" target="_blank" rel="noopener" class="c-no-underline"><i class="ri-github-fill"></i></a> -->
+        @takenocotoon
+    </address>
+</div></footer>
+
+</div>
+</body>
+
+</html>
