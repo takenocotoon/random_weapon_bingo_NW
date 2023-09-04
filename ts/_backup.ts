@@ -13,7 +13,6 @@ export function saveToSlot(language:string='ja'){
         if (!result) return;
         
         const CurrentLocalStorageData = getLocalStorageData();
-        console.log(CurrentLocalStorageData);
         if (Boolean(CurrentLocalStorageData)) saveLocalStorageData(localStorageKey + '-' + index, CurrentLocalStorageData);
         else {
             if (language == 'ja') window.alert(`現在のデータを取得できなかったため保存できませんでした。`);
@@ -38,7 +37,6 @@ export function loadFromSlot(language:string='ja', callback:Function) {
         if (!result) return false;
         
         const newLocalStorageData = getLocalStorageData(localStorageKey + '-' + index);
-        console.log(newLocalStorageData.myBingo);
         
         if (!newLocalStorageData.hasOwnProperty('myBingo') || newLocalStorageData.myBingo.length < 1) {
             if (language == 'ja') window.alert(`スロット${index}にはデータがありませんでした。`);
@@ -126,7 +124,6 @@ function setAndApply(newLocalStorageData:any, oldLocalStorageData:any, callback:
             oldLocalStorageData[key] = newLocalStorageData[key];
         }
     }
-    console.log(oldLocalStorageData);
     saveLocalStorageData(localStorageKey, oldLocalStorageData);
     callback();
     return true;
