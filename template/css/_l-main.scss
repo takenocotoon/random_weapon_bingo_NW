@@ -1,0 +1,28 @@
+@import "variables";
+
+main {
+    margin: 0;
+    padding: 1rem;
+    
+    background: var(--bg-back-color);
+    
+    overflow-x: hidden;
+    
+    @include mq('sp') {
+        padding: 0;
+    }
+}
+.theme-transparent main {
+    background: transparent;
+}
+
+
+#p-contents {
+    width: 90%;
+    max-width: 95vmin;
+    margin: 0 auto 50px;
+    
+    @include mq('sp') {
+        width: 95%;
+    }
+}

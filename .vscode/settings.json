@@ -1,9 +1,15 @@
 {
-    "cSpell.words": [
-        "ikatako",
-        "mybingo",
-        "mycard",
-        "myweapon",
-        "salmonrun"
-    ]
+  "cSpell.words": [
+    "Grizz",
+    "ikatako",
+    "mybingo",
+    "mycard",
+    "myweapon",
+    "salmonrun"
+  ],
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": null,
+  "prettier.printWidth": 200,
+  "prettier.bracketSameLine": false,
+  "prettier.singleQuote": true
 }

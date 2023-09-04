@@ -1,0 +1,40 @@
+@import "variables";
+
+header {
+    position: relative;
+    height: 4rem;
+    
+    background: var(--main-color);
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    
+    font-size: 1.5rem;
+    text-align: left;
+    font-weight: bold;
+    color: var(--txt-on-main-color);
+    
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    
+    h1{
+        padding: 1rem 5rem;
+        
+        font-size: 2rem;
+        font-weight: normal;
+        
+        @include mq('sp') {
+            padding: 1rem 1rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+    
+[lang="en"] header {
+    h1 {
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+}

@@ -1,0 +1,28 @@
+
+/* ### Variable ### */
+/* === Theme === */
+@use "theme";
+
+
+/* ### Foundation ### */
+/* === Base === */
+@use "f-base";
+
+
+/* ### Layout ### */
+/* === Header === */
+@use "l-header";
+@use "l-nav";
+@use "p-weapons";
+@use "p-menu-form";
+
+/* === Main === */
+@use "l-main";
+@use "p-bingo";
+@use "p-html2canvas";
+
+/* === Footer === */
+@use "l-footer";
+
+/* === Print === */
+@use "print";
