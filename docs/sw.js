@@ -3,7 +3,14 @@ const CACHE_NAME = `${registration.scope}!${CACHE_VERSION}`;
 
 const urlsToCache = [
     'css/style.css',
-    'js/main.js'
+    'js/main.js',
+    'font/s2font.ttf',
+    'remixicon/remixicon.css',
+    'remixicon/remixicon.eot',
+    'remixicon/remixicon.svg',
+    'remixicon/remixicon.woff',
+    'remixicon/remixicon.woff2',
+    'remixicon/remixicon.ttf',
 ];
 
 self.addEventListener('install', (event) => {
