@@ -177,11 +177,8 @@ class Bingo {
         
         // 花吹雪
         const bingoCountNew = this.checkBingo();
-        console.log(bingoData.bingoEffect);
         if (bingoData.bingoEffect && bingoCountNew > bingoData.bingoCount) {
-            console.log('花吹雪');
             const myCanvas:HTMLCanvasElement|null = document.getElementById('js-confetti') as HTMLCanvasElement;
-            console.log(myCanvas);
             const myConfetti = confetti.create(myCanvas, {
                 resize: true,
                 useWorker: true
@@ -220,13 +217,10 @@ class Bingo {
         bingoData.myBingo = [];
         
         let centerItemObj = freeItemsList[1];
-        console.log(bingoData.centerItem.substring(0,6));
         if ( bingoData.centerItem.substring(0,6) == 'weapon' ) {
             const centerWeaponLid:number = parseInt(bingoData.centerItem.substring(6));
             items = items.filter(item => item.lid !== centerWeaponLid);
             centerItemObj = bukiListAll.concat(bukiListGrizzco).filter(item => item.lid === centerWeaponLid)[0];
-            console.log(centerWeaponLid);
-            console.log( centerItemObj );
         } else if (bingoData.centerItem == 'random') {
             centerItemObj = items.splice(Math.floor(Math.random() * items.length), 1)[0];
         } else if (bingoData.centerItem == 'squid') {

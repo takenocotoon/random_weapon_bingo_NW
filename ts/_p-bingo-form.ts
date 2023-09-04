@@ -35,9 +35,7 @@ class BingoForm {
     
     
     reloadAndRestore = () => {
-        console.log(bingoData);
         reload();
-        console.log(bingoData);
         bingo.renderBingoCard();
         bingoForm.restore();
     }
