@@ -1,0 +1,12 @@
+.p-menuForm {
+    margin-bottom: 2rem;
+    
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    
+    &__title {
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+        border-bottom: 1px solid var(--txt-color);
+    }
+}

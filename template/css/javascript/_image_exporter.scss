@@ -1,0 +1,31 @@
+@use '../global' as g;
+
+/** 画像保存 **/
+#js-imageExporter {
+    &__box {
+        padding: 1px;
+        width: 1080px;
+        
+        @include g.mq('sp') {
+            width: 100%;
+        }
+    }
+    
+    &__target {
+        width: 100%;
+        // margin-top: 10px;
+        border: 3px solid #FFF;
+        border-radius: 2vw;
+        // box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, var(--shadow-opacity)), 0 0 0 2px #333;
+        
+        .p-bingo__weaponName {
+            font-size: 1.2rem;
+            line-height: 1.2rem;
+            
+            @include g.mq('sp') {
+                font-size: 0.3rem;
+                line-height: 0.3rem;
+            }
+        }
+    }
+}

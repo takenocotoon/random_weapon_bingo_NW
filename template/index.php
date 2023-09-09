@@ -10,22 +10,64 @@
     $url='https://takenocotoon.github.io/random_weapon_bingo_nw/';
     $twitter='@takenocotoon';
     $theme_color='#FE6345';
-    $cssPaths=['./css/style.css', './remixicon/remixicon.css'];
+    $cssPaths=['./css/style.min.css', './remixicon/remixicon.css'];
     $modulePaths=['./js/main.js'];
     $scriptPaths=[];
     $base_folder='./';
-    include(__DIR__ . '/parts/0_head/_head.php');
+    include(__DIR__ . '/parts/head/_head.php');
 ?>
 </head>
 
 <body lang="ja">
-<div id="l-main-container">
+<div id="l-wrapper">
 
 <?php
-    include(__DIR__ . '/parts/1_body/_header.php');
-    include(__DIR__ . '/parts/1_body/_nav.php');
-    include(__DIR__ . '/parts/1_body/_main.php');
-    include(__DIR__ . '/parts/1_body/_footer.php');
+    include(__DIR__ . '/parts/body/_header.php');
+    $menuItems = [
+        [
+            'url' => '#',
+            'isSubmenu' => true,
+            'isStrong' => false,
+            'id' => 'bingo-settings',
+            'icon' => 'settings-3-fill',
+            'ja' => 'ビンゴ設定',
+            'en' => 'Bingo Settings',
+        ],
+        [
+            'url' => '#',
+            'isSubmenu' => true,
+            'isStrong' => false,
+            'id' => 'settings',
+            'icon' => 'paint-brush-fill',
+            'ja' => '外観',
+            'en' => 'Design',
+        ],
+        [
+            'url' => '#',
+            'isSubmenu' => true,
+            'isStrong' => false,
+            'id' => 'backup',
+            'icon' => 'file-download-fill',
+            'ja' => 'バックアップ',
+            'en' => 'Backup',
+        ],
+        // [
+        //     'url' => '#',
+        //     'isSubmenu' => true,
+        //     'isStrong' => false,
+        //     'id' => 'help',
+        //     'icon' => 'question-fill',
+        //     'ja' => 'ヘルプ',
+        //     'en' => 'Help',
+        // ],
+    ];
+    include(__DIR__ . '/parts/body/_nav.php');
+    include(__DIR__ . '/parts/body/_main.php');
+    $dialogs = [
+        'center-item', 'compleat'
+    ];
+    include(__DIR__ . '/parts/body/_dialog.php');
+    include(__DIR__ . '/parts/body/_footer.php');
 ?>
 
 </div>

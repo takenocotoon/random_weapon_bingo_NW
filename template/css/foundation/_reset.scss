@@ -1,0 +1,33 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    line-height: 1rem;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+}
+button, [type=button], [type=reset], [type=submit] {
+    cursor: pointer;
+}
+button, input, optgroup, select, textarea {
+    // vertical-align: middle;
+    color: inherit;
+    font: inherit;
+    background: transparent;
+    // padding: 0;
+    // margin: 0;
+    border-radius: 0;
+    text-transform: inherit;
+}

@@ -1,0 +1,19 @@
+/* === WebFont === */
+@font-face {
+    font-family: Splatoon1;
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url(../font/s1font.woff2) format('woff2'),
+        url(../font/s1font.woff) format('woff');
+    font-display: swap;
+}
+@font-face {
+    font-family: Splatoon2;
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url(../font/s2font.woff2) format('woff2'),
+        url(../font/s2font.woff) format('woff');
+    font-display: swap;
+}

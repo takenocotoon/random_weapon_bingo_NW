@@ -1,0 +1,195 @@
+@use '../../global/' as g;
+
+.p-nav {
+    @include g.mq('sp') {
+        padding: 5rem 1rem;
+        
+        
+        // will-change: opacity, backdrop-filter;
+        background: rgba(var(--bg-front-rgb-color), var(--bg-menu-sp-opacity));
+        box-shadow: 0px 0px 20px rgba(0,0,0,var(--shadow-opacity));
+    }
+    
+    &__ul {
+        width: 100%;
+        height: 4rem;
+        margin: 0;
+        padding: 0 2rem;
+        
+        display: flex;
+        list-style-type: none;
+        
+        font-size: 1.5rem;
+        text-align: left;
+        
+        @include g.mq('pc') {
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        @include g.mq('sp') {
+            height: 100%;
+            padding: 0;
+            flex-direction: column;
+        }
+    }
+    
+    &__li {
+        @include g.mq('pc') {
+            height: 4rem;
+            line-height: 4rem;
+        }
+        @include g.mq('sp') {
+            border-bottom: 1px solid var(--border-color);
+            
+            &:first-child {
+                border-top: 1px solid  var(--border-color);
+            }
+        }
+    }
+    
+    &__menu {
+        display: block;
+        position: relative;
+        width: 100%;
+        padding: 1rem;
+        
+        text-decoration: none;
+        text-align: center;
+        font-size: 1.2rem;
+        
+        @include g.mq('pc') {
+            height: 4rem;
+            padding: 0 1rem;
+            // margin: 0;
+            // border-radius: 0.5rem;
+            
+            &:link, &:visited {
+                color: var(--txt-on-main-color);
+            }
+            
+            &:active, &.js-is_active {
+                background: rgba(var(--btn-rgb-color), var(--menu-btn-opacity));
+            }
+            @media (any-hover:hover) {
+                &:hover {
+                    background: rgba(var(--btn-rgb-color), var(--menu-btn-opacity));
+                }
+            }
+        }
+        @include g.mq('sp') {
+            padding: 2rem;
+            font-size: 1.3rem;
+            -webkit-tap-highlight-color: rgba(var(--main-color), var(--menu-btn-opacity));
+            
+            &:link, &:visited {
+                color: var(--txt-color);
+            }
+        }
+        
+        &-strong {
+            font-size: 1.3rem;
+        }
+        
+        // 下線
+        &::before {
+            z-index: 101;
+            content: "";
+            display: block;
+            position: absolute;
+            height: 3px;
+            
+            background: var(--accent-color);
+            transition: 0.2s;
+            transition-timing-function: ease-out;
+            transform: scaleX(0);
+            
+            @include g.mq('pc') {
+                right: 1rem;
+                width: calc(100% - 2rem);
+            }
+            @include g.mq('sp') {
+                right: 5%;
+                width: 90%;
+            }
+        }
+        &::before {
+            bottom: 0.5rem;
+        }
+        &:active::before, &.js-is_active::before {
+            transform: scaleX(1);
+        }
+        @media (any-hover:hover) {
+            &:hover::before {
+                transform: scaleX(1);
+            }
+        }
+    }
+    
+    &__submenu {
+        width: 100%;
+        padding: 0 2rem 0.5rem;
+        
+        opacity: 0;
+        // transition: opacity 1s;
+        transform: scaleY(0);
+        transition: transform 0.1s opacity 1s;
+        transition-timing-function: ease-out;
+        transform-origin: top center;
+        
+        @include g.mq('pc') {
+            position: absolute;
+            top: 0;
+            right: 0;
+            max-width: 800px;
+            margin-top: 4rem;
+            padding: 2rem;
+            
+            background: rgba(var(--bg-front-rgb-color), var(--bg-menu-opacity));
+            backdrop-filter: blur(g.$menu_blur);
+            
+            box-shadow: 0 10px 10px rgba(0, 0, 0, var(--shadow-opacity));
+        }
+        @include g.mq('sp') {
+            position: relative;
+            height: 0;
+            
+            overflow: hidden;
+            background: transparent;
+            pointer-events: none;
+        }
+        
+        > button {
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        
+        > div:first-child {
+            margin-top: 1.2rem;
+        }
+    }
+    
+    &__menu.js-is_deactive + &__submenu {
+        transform: scaleY(0);
+        pointer-events: none;
+        opacity: 0;
+    }
+    &__menu:active + &__submenu, &__menu.js-is_active + &__submenu {
+        display: block;
+        height: unset;
+        
+        transform: scaleY(1);
+        opacity: 1;
+        pointer-events: inherit;
+    }
+    @media (any-hover:hover) {
+        &__menu:hover + &__submenu, &__submenu:hover {
+            display: block;
+            height: unset;
+            z-index: 999;
+            
+            transform: scaleY(1);
+            opacity: 1;
+            pointer-events: inherit;
+        }
+    }
+}

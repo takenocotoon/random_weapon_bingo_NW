@@ -1,10 +1,11 @@
-const path = require("path");
+const path = require('path');
+// const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: "./ts/index.ts",
+  entry: './ts/index.ts',
   output: {
-    filename: "main.js",
+    filename: 'main.js',
     path: path.resolve(__dirname, "template/js"),
   },
   resolve: {
@@ -19,4 +20,7 @@ module.exports = {
       },
     ],
   },
+  // plugins: [
+  //   new WorkboxPlugin.GenerateSW(),  // Workboxプラグインを追加
+  // ],
 };

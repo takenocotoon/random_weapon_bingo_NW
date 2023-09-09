@@ -1,0 +1,28 @@
+.u-width100 {
+    width: 100%;
+}
+.u-noUnderline{
+    text-decoration: none;
+}
+a {
+    &:link, &:visited{
+        &.u-noUnderline{
+            text-decoration: none;
+        }
+    }
+}
+@media print {
+    .u-noPrint {
+        display: none;
+    }
+}
+
+.u-hidden {
+    display: none;
+}
+
+.u-flexColumn {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}

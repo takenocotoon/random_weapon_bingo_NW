@@ -1,0 +1,15 @@
+.p-footer {
+    padding: 0.5rem 3rem;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    text-align: right;
+    
+    &__address {
+        color: var(--txt-link-color);
+        font-style: normal;
+        
+        a, a:visited {
+            text-decoration: none;
+        }
+    }
+}

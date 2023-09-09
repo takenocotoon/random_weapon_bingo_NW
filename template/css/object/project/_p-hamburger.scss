@@ -1,0 +1,112 @@
+@use '../../global/' as g;
+.p-hamburger {
+    padding: 0;
+    background-color: transparent;
+    
+    &:active {
+        background-color: transparent;
+    }
+    &:hover, &:active {
+        background-color: transparent;
+    }
+    @include g.mq('pc') {
+        display: none;
+    }
+    
+    @include g.mq('sp') {
+        z-index: 100;
+        position: relative;
+        width: 2rem;
+        height: 1.8rem;
+        margin: 1rem;
+        
+        background: transparent;
+        border-width: 2px;
+        border-style: outset;
+        border-color: transparent;
+        cursor: pointer;
+        
+        span {
+            position: absolute;
+            display: block;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            
+            background: var(--border-color);
+            border-radius: 1rem;
+            
+            &:nth-child(1) {
+                top: 0;
+            }
+            &:nth-child(2) {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            &:nth-child(3) {
+                top: 100%;
+                transform: translateY(-100%);
+            }
+        }
+        
+        &.js-is_active{
+            span{
+                background: var(--txt-color);
+                &:nth-child(1) {
+                    animation: hamburger1 forwards 0.3s ease;
+                    top: 50%; transform: translateY(-50%) rotate(135deg);
+                }
+                &:nth-child(2) {
+                    animation: hamburger2 forwards 0.3s ease;
+                    transform: translate(50%, -50%); opacity: 0;
+                }
+                &:nth-child(3) {
+                    animation: hamburger3 forwards 0.3s ease;
+                    top: 50%; transform: translateY(-50%) rotate(-135deg);
+                }
+            }
+        }
+        &.js-is_deactive{
+            span{
+                background: var(--border-color);
+                &:nth-child(1) {
+                    animation: hamburger1_r forwards 0.3s ease;
+                    top: 0; transform: none;
+                }
+                &:nth-child(2) {
+                    animation: hamburger2_r forwards 0.3s ease;
+                    transform: translateY(-50%); opacity: 1;
+                }
+                &:nth-child(3) {
+                    animation: hamburger3_r forwards 0.3s ease;
+                    top: 100%; transform: translateY(-100%);
+                }
+            }
+        }
+    }
+}
+
+@keyframes hamburger1{
+    from { top: 0; transform: none; background: var(--border-color); }
+    to   { top: 50%; transform: translateY(-50%) rotate(135deg);background: var(--txt-color); }
+}
+@keyframes hamburger2{
+    from { transform: translateY(-50%); opacity: 1; background: var(--border-color); }
+    to   { transform: translate(50%, -50%); opacity: 0;background: var(--txt-color); }
+}
+@keyframes hamburger3{
+    from { top: 100%; transform: translateY(-100%); background: var(--border-color); }
+    to   { top: 50%; transform: translateY(-50%) rotate(-135deg);background: var(--txt-color); }
+}
+@keyframes hamburger1_r{
+    from { top: 50%; transform: translateY(-50%) rotate(135deg);background: var(--txt-color); }
+    to   { top: 0; transform: none; background: var(--border-color); }
+}
+@keyframes hamburger2_r{
+    from { transform: translate(50%, -50%); opacity: 0; background: var(--txt-color); }
+    to   { transform: translateY(-50%); opacity: 1; background: var(--border-color); }
+}
+@keyframes hamburger3_r{
+    from { top: 50%; transform: translateY(-50%) rotate(-135deg); background: var(--txt-color); }
+    to   { top: 100%; transform: translateY(-100%); background: var(--border-color); }
+}

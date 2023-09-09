@@ -1,11 +1,13 @@
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v2.0.1';
 const CACHE_NAME = `${registration.scope}!${CACHE_VERSION}`;
 
 const urlsToCache = [
-    '.',
-    'css/style.css',
+    'css/style.min.css',
     'js/main.js',
-    'font/s2font.ttf',
+    'font/s1font.woff',
+    'font/s1font.woff2',
+    'font/s2font.woff',
+    'font/s2font.woff2',
     'remixicon/remixicon.css',
     'remixicon/remixicon.eot',
     'remixicon/remixicon.svg',
@@ -13,7 +15,9 @@ const urlsToCache = [
     'remixicon/remixicon.woff2',
     'remixicon/remixicon.ttf',
     'img/background.webp',
+    'img/background-title.webp',
     'img/background2.webp',
+    'img/background2-title.webp',
     'img/background3.webp',
     'img/background4.webp',
     'img/paint_bingo.webp',

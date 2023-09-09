@@ -1,0 +1,42 @@
+@use '../../global' as g;
+.p-header {
+    font-size: 1.5rem;
+    text-align: left;
+    font-weight: bold;
+    color: var(--txt-on-main-color);
+    
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    
+    &__title {
+        padding: 1rem calc((100% - 487px - 307px)/2);
+        
+        font-family: g.$font_accent;
+        font-size: 1.8rem;
+        font-weight: normal;
+        
+        @media screen and (max-width: 820px) {
+            padding: 1rem 1rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+[lang="en"] .p-header {
+    &__title {
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        
+        @media screen and (max-width: 950px) {
+            padding: 1rem 1rem;
+            font-size: 1rem;
+        }
+        @include g.mq('sp') {
+            padding: 1rem 1rem;
+            font-size: 1.5rem;
+        }
+    }
+}

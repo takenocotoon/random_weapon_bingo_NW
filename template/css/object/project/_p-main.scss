@@ -1,0 +1,9 @@
+@use '../../global/' as g;
+.p-main {
+    padding: 1rem;
+    overflow-x: hidden;
+    
+    @include g.mq('sp') {
+        padding: 0;
+    }
+}

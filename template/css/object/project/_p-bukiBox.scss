@@ -1,0 +1,44 @@
+.p-bukiBox {
+    width: 100%;
+    margin: 0 0 50px 0;
+    
+    display: flex;
+    flex-direction: column;
+    
+    &__tr {
+        display: flex;
+    }
+    
+    &__td {
+        position: relative;
+        margin: 2px;
+        padding: 3px;
+        
+        background-color: rgba(var(--bingo-td-rgb-color), var(--simple-bingo-opacity));
+        background-position: center;
+        background-size: cover;
+        border-radius: 30%;
+        
+        flex-direction: row;
+        text-align: center;
+        vertical-align: middle;
+        
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: rgba(var(--bingo-td-rgb-color), var(--menu-btn-opacity));
+            }
+        }
+    }
+    
+    &__img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-width: 100px;
+        margin: 0;
+        padding: 0;
+        vertical-align:top;
+        
+        filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, var(--shadow-weapon-opacity)));
+    }
+}

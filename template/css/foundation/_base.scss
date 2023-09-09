@@ -1,0 +1,53 @@
+@use '../global/' as g;
+/* === Base === */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    
+    background-color: var(--bg-color);
+    
+    font-size: 14pt;
+    font-family: g.$font;
+    color: var(--txt-color);
+    transition: background 1s, color 1s;
+}
+
+a {
+    transition: color 0.5s, background 0.5s;
+    &:link, &:visited{
+        color: var(--txt-link-color);
+    }
+}
+
+dialog {
+    background-color: var(--bg-front-color);
+    border-radius: 0.5rem;
+    border-width: 0;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, var(--shadow-opacity));
+    
+    color: var(--txt-color);
+    text-align: center;
+    line-height: 1.5rem;
+    
+    @include g.mq('pc') {
+        max-width: 80%;
+    }
+}
+
+input[type="checkbox"] {
+    margin: 3px 3px 3px 4px;
+    accent-color: var(--btn-color);
+}
+
+body [lang="ja"], body [lang="en"] {
+    display: none;
+}
+body[lang="ja"] [lang="ja"]{
+    display: unset;
+}
+body[lang="en"] [lang="en"]{
+    display: unset;
+}

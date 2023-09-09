@@ -1,0 +1,11 @@
+$breakpoint-mobile: 767px;
+$breakpoints: (
+	"sp": "screen and (max-width: #{$breakpoint-mobile})",
+	"pc": "screen and (min-width: #{$breakpoint-mobile + 1px})",
+);
+
+@mixin mq($breakpoint: sp) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}

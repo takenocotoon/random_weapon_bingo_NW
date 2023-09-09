@@ -1,0 +1,492 @@
+/* ### Foundation ### */
+/* === WebFont === */
+@font-face {
+  font-family: Splatoon1;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/s1font.woff2) format("woff2"), url(../font/s1font.woff) format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: Splatoon2;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/s2font.woff2) format("woff2"), url(../font/s2font.woff) format("woff");
+  font-display: swap;
+}
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  line-height: 1rem;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+button, [type=button], [type=reset], [type=submit] {
+  cursor: pointer;
+}
+
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  border-radius: 0;
+  text-transform: inherit;
+}
+
+/* === Theme === */
+body {
+  --main-color: #FE6345;
+  --main-rgb-color: 254, 99, 69;
+  --accent-color: #098264;
+  --accent-rgb-color: 9, 130, 100;
+  --disable-color: gray;
+  --disable-rgb-color: 128, 128, 128;
+  --border-color: #cccccc;
+  --border-rgb-color: 204, 204, 204;
+  --txt-color: #333333;
+  --txt-rgb-color: 51, 51, 51;
+  --txt-on-main-color: #FFFFFF;
+  --txt-on-main-rgb-color: 255, 255, 255;
+  --txt-link-color: #652012;
+  --txt-link-rgb-color: 101, 32, 18;
+  --bg-color: #FFFFFF;
+  --bg-rgb-color: 255, 255, 255;
+  --bg-front-color: #e6e6e6;
+  --bg-front-rgb-color: 230, 230, 230;
+  --bg-back-color: #ECECEC;
+  --bg-back-rgb-color: 236, 236, 236;
+  --btn-color: #c63417;
+  --btn-rgb-color: 198, 52, 23;
+  --btn-txt-color: #EEEEEE;
+  --btn-txt-rgb-color: 238, 238, 238;
+  --btn-active-color: #FE6345;
+  --btn-active-rgb-color: 254, 99, 69;
+  --btn-disable-color: #DDDDDD;
+  --btn-disable-rgb-color: 221, 221, 221;
+  --btn-shadow-color: #652012;
+  --btn-shadow-rgb-color: 101, 32, 18;
+  --bingo-td-color: #FFFFFF;
+  --bingo-td-rgb-color: 255, 255, 255;
+  --bingo-td-done-color: #000000;
+  --bingo-td-done-rgb-color: 0, 0, 0;
+  --bingo-td-bingo-color: #ff2900;
+  --bingo-td-bingo-rgb-color: 255, 41, 0;
+  --bingo-td-reach-color: #ffda08;
+  --bingo-td-reach-rgb-color: 255, 218, 8;
+  --simple-bingo-color: #000000;
+  --simple-bingo-rgb-color: 0, 0, 0;
+  --shadow-opacity: 0.2;
+  --shadow-weapon-opacity: 0.4;
+  --bg-menu-opacity: 0.7;
+  --bg-menu-sp-opacity: 0.95;
+  --btn-disable-opacity: 0.8;
+  --btn-innerBorder-opacity: 0.2;
+  --menu-btn-opacity: 0.5;
+  --bingo-td-opacity: 0.8;
+  --bingo-td-done-opacity: 0.9;
+  --bingo-td-bingo-opacity: 1;
+  --bingo-td-reach-opacity: 0.7;
+  --simple-bingo-opacity: 0.1;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    --main-color: #FE6345;
+    --main-rgb-color: 254, 99, 69;
+    --accent-color: #098264;
+    --accent-rgb-color: 9, 130, 100;
+    --disable-color: gray;
+    --disable-rgb-color: 128, 128, 128;
+    --border-color: #cccccc;
+    --border-rgb-color: 204, 204, 204;
+    --txt-color: #333333;
+    --txt-rgb-color: 51, 51, 51;
+    --txt-on-main-color: #FFFFFF;
+    --txt-on-main-rgb-color: 255, 255, 255;
+    --txt-link-color: #652012;
+    --txt-link-rgb-color: 101, 32, 18;
+    --bg-color: #FFFFFF;
+    --bg-rgb-color: 255, 255, 255;
+    --bg-front-color: #e6e6e6;
+    --bg-front-rgb-color: 230, 230, 230;
+    --bg-back-color: #ECECEC;
+    --bg-back-rgb-color: 236, 236, 236;
+    --btn-color: #c63417;
+    --btn-rgb-color: 198, 52, 23;
+    --btn-txt-color: #EEEEEE;
+    --btn-txt-rgb-color: 238, 238, 238;
+    --btn-active-color: #FE6345;
+    --btn-active-rgb-color: 254, 99, 69;
+    --btn-disable-color: #DDDDDD;
+    --btn-disable-rgb-color: 221, 221, 221;
+    --btn-shadow-color: #652012;
+    --btn-shadow-rgb-color: 101, 32, 18;
+    --bingo-td-color: #FFFFFF;
+    --bingo-td-rgb-color: 255, 255, 255;
+    --bingo-td-done-color: #000000;
+    --bingo-td-done-rgb-color: 0, 0, 0;
+    --bingo-td-bingo-color: #ff2900;
+    --bingo-td-bingo-rgb-color: 255, 41, 0;
+    --bingo-td-reach-color: #ffda08;
+    --bingo-td-reach-rgb-color: 255, 218, 8;
+    --simple-bingo-color: #000000;
+    --simple-bingo-rgb-color: 0, 0, 0;
+    --shadow-opacity: 0.2;
+    --shadow-weapon-opacity: 0.4;
+    --bg-menu-opacity: 0.7;
+    --bg-menu-sp-opacity: 0.95;
+    --btn-disable-opacity: 0.8;
+    --btn-innerBorder-opacity: 0.2;
+    --menu-btn-opacity: 0.5;
+    --bingo-td-opacity: 0.8;
+    --bingo-td-done-opacity: 0.9;
+    --bingo-td-bingo-opacity: 1;
+    --bingo-td-reach-opacity: 0.7;
+    --simple-bingo-opacity: 0.1;
+  }
+}
+body.theme-light {
+  --main-color: #FE6345;
+  --main-rgb-color: 254, 99, 69;
+  --accent-color: #098264;
+  --accent-rgb-color: 9, 130, 100;
+  --disable-color: gray;
+  --disable-rgb-color: 128, 128, 128;
+  --border-color: #cccccc;
+  --border-rgb-color: 204, 204, 204;
+  --txt-color: #333333;
+  --txt-rgb-color: 51, 51, 51;
+  --txt-on-main-color: #FFFFFF;
+  --txt-on-main-rgb-color: 255, 255, 255;
+  --txt-link-color: #652012;
+  --txt-link-rgb-color: 101, 32, 18;
+  --bg-color: #FFFFFF;
+  --bg-rgb-color: 255, 255, 255;
+  --bg-front-color: #e6e6e6;
+  --bg-front-rgb-color: 230, 230, 230;
+  --bg-back-color: #ECECEC;
+  --bg-back-rgb-color: 236, 236, 236;
+  --btn-color: #c63417;
+  --btn-rgb-color: 198, 52, 23;
+  --btn-txt-color: #EEEEEE;
+  --btn-txt-rgb-color: 238, 238, 238;
+  --btn-active-color: #FE6345;
+  --btn-active-rgb-color: 254, 99, 69;
+  --btn-disable-color: #DDDDDD;
+  --btn-disable-rgb-color: 221, 221, 221;
+  --btn-shadow-color: #652012;
+  --btn-shadow-rgb-color: 101, 32, 18;
+  --bingo-td-color: #FFFFFF;
+  --bingo-td-rgb-color: 255, 255, 255;
+  --bingo-td-done-color: #000000;
+  --bingo-td-done-rgb-color: 0, 0, 0;
+  --bingo-td-bingo-color: #ff2900;
+  --bingo-td-bingo-rgb-color: 255, 41, 0;
+  --bingo-td-reach-color: #ffda08;
+  --bingo-td-reach-rgb-color: 255, 218, 8;
+  --simple-bingo-color: #000000;
+  --simple-bingo-rgb-color: 0, 0, 0;
+  --shadow-opacity: 0.2;
+  --shadow-weapon-opacity: 0.4;
+  --bg-menu-opacity: 0.7;
+  --bg-menu-sp-opacity: 0.95;
+  --btn-disable-opacity: 0.8;
+  --btn-innerBorder-opacity: 0.2;
+  --menu-btn-opacity: 0.5;
+  --bingo-td-opacity: 0.8;
+  --bingo-td-done-opacity: 0.9;
+  --bingo-td-bingo-opacity: 1;
+  --bingo-td-reach-opacity: 0.7;
+  --simple-bingo-opacity: 0.1;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --main-color: #FE6345;
+    --main-rgb-color: 254, 99, 69;
+    --accent-color: #098264;
+    --accent-rgb-color: 9, 130, 100;
+    --disable-color: gray;
+    --disable-rgb-color: 128, 128, 128;
+    --border-color: #cccccc;
+    --border-rgb-color: 204, 204, 204;
+    --txt-color: #cccccc;
+    --txt-rgb-color: 204, 204, 204;
+    --txt-on-main-color: #e6e6e6;
+    --txt-on-main-rgb-color: 230, 230, 230;
+    --txt-link-color: #fae6e2;
+    --txt-link-rgb-color: 250, 230, 226;
+    --bg-color: #222222;
+    --bg-rgb-color: 34, 34, 34;
+    --bg-front-color: #333333;
+    --bg-front-rgb-color: 51, 51, 51;
+    --bg-back-color: #111111;
+    --bg-back-rgb-color: 17, 17, 17;
+    --btn-color: #c63417;
+    --btn-rgb-color: 198, 52, 23;
+    --btn-txt-color: #EEEEEE;
+    --btn-txt-rgb-color: 238, 238, 238;
+    --btn-active-color: #FE6345;
+    --btn-active-rgb-color: 254, 99, 69;
+    --btn-disable-color: #333333;
+    --btn-disable-rgb-color: 51, 51, 51;
+    --btn-shadow-color: #652012;
+    --btn-shadow-rgb-color: 101, 32, 18;
+    --bingo-td-color: #FFFFFF;
+    --bingo-td-rgb-color: 255, 255, 255;
+    --bingo-td-done-color: #000000;
+    --bingo-td-done-rgb-color: 0, 0, 0;
+    --bingo-td-bingo-color: #ff2900;
+    --bingo-td-bingo-rgb-color: 255, 41, 0;
+    --bingo-td-reach-color: #ffda08;
+    --bingo-td-reach-rgb-color: 255, 218, 8;
+    --simple-bingo-color: #FFFFFF;
+    --simple-bingo-rgb-color: 255, 255, 255;
+    --shadow-opacity: 0.2;
+    --shadow-weapon-opacity: 0.4;
+    --bg-menu-opacity: 0.7;
+    --bg-menu-sp-opacity: 0.95;
+    --btn-disable-opacity: 0.95;
+    --btn-innerBorder-opacity: 0.5;
+    --menu-btn-opacity: 0.5;
+    --bingo-td-opacity: 0.8;
+    --bingo-td-done-opacity: 0.9;
+    --bingo-td-bingo-opacity: 1;
+    --bingo-td-reach-opacity: 0.7;
+    --simple-bingo-opacity: 0.1;
+  }
+}
+body.theme-dark {
+  --main-color: #FE6345;
+  --main-rgb-color: 254, 99, 69;
+  --accent-color: #098264;
+  --accent-rgb-color: 9, 130, 100;
+  --disable-color: gray;
+  --disable-rgb-color: 128, 128, 128;
+  --border-color: #cccccc;
+  --border-rgb-color: 204, 204, 204;
+  --txt-color: #cccccc;
+  --txt-rgb-color: 204, 204, 204;
+  --txt-on-main-color: #e6e6e6;
+  --txt-on-main-rgb-color: 230, 230, 230;
+  --txt-link-color: #fae6e2;
+  --txt-link-rgb-color: 250, 230, 226;
+  --bg-color: #222222;
+  --bg-rgb-color: 34, 34, 34;
+  --bg-front-color: #333333;
+  --bg-front-rgb-color: 51, 51, 51;
+  --bg-back-color: #111111;
+  --bg-back-rgb-color: 17, 17, 17;
+  --btn-color: #c63417;
+  --btn-rgb-color: 198, 52, 23;
+  --btn-txt-color: #EEEEEE;
+  --btn-txt-rgb-color: 238, 238, 238;
+  --btn-active-color: #FE6345;
+  --btn-active-rgb-color: 254, 99, 69;
+  --btn-disable-color: #333333;
+  --btn-disable-rgb-color: 51, 51, 51;
+  --btn-shadow-color: #652012;
+  --btn-shadow-rgb-color: 101, 32, 18;
+  --bingo-td-color: #FFFFFF;
+  --bingo-td-rgb-color: 255, 255, 255;
+  --bingo-td-done-color: #000000;
+  --bingo-td-done-rgb-color: 0, 0, 0;
+  --bingo-td-bingo-color: #ff2900;
+  --bingo-td-bingo-rgb-color: 255, 41, 0;
+  --bingo-td-reach-color: #ffda08;
+  --bingo-td-reach-rgb-color: 255, 218, 8;
+  --simple-bingo-color: #FFFFFF;
+  --simple-bingo-rgb-color: 255, 255, 255;
+  --shadow-opacity: 0.2;
+  --shadow-weapon-opacity: 0.4;
+  --bg-menu-opacity: 0.7;
+  --bg-menu-sp-opacity: 0.95;
+  --btn-disable-opacity: 0.95;
+  --btn-innerBorder-opacity: 0.5;
+  --menu-btn-opacity: 0.5;
+  --bingo-td-opacity: 0.8;
+  --bingo-td-done-opacity: 0.9;
+  --bingo-td-bingo-opacity: 1;
+  --bingo-td-reach-opacity: 0.7;
+  --simple-bingo-opacity: 0.1;
+}
+
+body.theme-green {
+  --main-color: #00FF00;
+  --main-rgb-color: 0, 255, 0;
+  --accent-color: #098264;
+  --accent-rgb-color: 9, 130, 100;
+  --disable-color: gray;
+  --disable-rgb-color: 128, 128, 128;
+  --border-color: #cccccc;
+  --border-rgb-color: 204, 204, 204;
+  --txt-color: #333333;
+  --txt-rgb-color: 51, 51, 51;
+  --txt-on-main-color: #FFFFFF;
+  --txt-on-main-rgb-color: 255, 255, 255;
+  --txt-link-color: #FFFFFF;
+  --txt-link-rgb-color: 255, 255, 255;
+  --bg-color: #00FF00;
+  --bg-rgb-color: 0, 255, 0;
+  --bg-front-color: #00FF00;
+  --bg-front-rgb-color: 0, 255, 0;
+  --bg-back-color: #00FF00;
+  --bg-back-rgb-color: 0, 255, 0;
+  --btn-color: #c63417;
+  --btn-rgb-color: 198, 52, 23;
+  --btn-txt-color: #EEEEEE;
+  --btn-txt-rgb-color: 238, 238, 238;
+  --btn-active-color: #FE6345;
+  --btn-active-rgb-color: 254, 99, 69;
+  --btn-disable-color: #DDDDDD;
+  --btn-disable-rgb-color: 221, 221, 221;
+  --btn-shadow-color: #652012;
+  --btn-shadow-rgb-color: 101, 32, 18;
+  --bingo-td-color: #FFFFFF;
+  --bingo-td-rgb-color: 255, 255, 255;
+  --bingo-td-done-color: #000000;
+  --bingo-td-done-rgb-color: 0, 0, 0;
+  --bingo-td-bingo-color: #ff2900;
+  --bingo-td-bingo-rgb-color: 255, 41, 0;
+  --bingo-td-reach-color: #ffda08;
+  --bingo-td-reach-rgb-color: 255, 218, 8;
+  --simple-bingo-color: #000000;
+  --simple-bingo-rgb-color: 0, 0, 0;
+  --shadow-opacity: 0;
+  --shadow-weapon-opacity: 0;
+  --bg-menu-opacity: 1;
+  --bg-menu-sp-opacity: 1;
+  --btn-disable-opacity: 1;
+  --btn-innerBorder-opacity: 0.2;
+  --menu-btn-opacity: 1;
+  --bingo-td-opacity: 1;
+  --bingo-td-done-opacity: 1;
+  --bingo-td-bingo-opacity: 1;
+  --bingo-td-reach-opacity: 1;
+  --simple-bingo-opacity: 1;
+}
+
+body.theme-transparent {
+  --main-color: #FE6345;
+  --main-rgb-color: 254, 99, 69;
+  --accent-color: #098264;
+  --accent-rgb-color: 9, 130, 100;
+  --disable-color: gray;
+  --disable-rgb-color: 128, 128, 128;
+  --border-color: #cccccc;
+  --border-rgb-color: 204, 204, 204;
+  --txt-color: #333333;
+  --txt-rgb-color: 51, 51, 51;
+  --txt-on-main-color: #FFFFFF;
+  --txt-on-main-rgb-color: 255, 255, 255;
+  --txt-link-color: #652012;
+  --txt-link-rgb-color: 101, 32, 18;
+  --bg-color: rgba(255, 255, 255, 0);
+  --bg-rgb-color: 255, 255, 255;
+  --bg-front-color: rgba(255, 255, 255, 0);
+  --bg-front-rgb-color: 255, 255, 255;
+  --bg-back-color: rgba(255, 255, 255, 0);
+  --bg-back-rgb-color: 255, 255, 255;
+  --btn-color: #c63417;
+  --btn-rgb-color: 198, 52, 23;
+  --btn-txt-color: #EEEEEE;
+  --btn-txt-rgb-color: 238, 238, 238;
+  --btn-active-color: #FE6345;
+  --btn-active-rgb-color: 254, 99, 69;
+  --btn-disable-color: #DDDDDD;
+  --btn-disable-rgb-color: 221, 221, 221;
+  --btn-shadow-color: #652012;
+  --btn-shadow-rgb-color: 101, 32, 18;
+  --bingo-td-color: #FFFFFF;
+  --bingo-td-rgb-color: 255, 255, 255;
+  --bingo-td-done-color: #000000;
+  --bingo-td-done-rgb-color: 0, 0, 0;
+  --bingo-td-bingo-color: #ff2900;
+  --bingo-td-bingo-rgb-color: 255, 41, 0;
+  --bingo-td-reach-color: #ffda08;
+  --bingo-td-reach-rgb-color: 255, 218, 8;
+  --simple-bingo-color: #000000;
+  --simple-bingo-rgb-color: 0, 0, 0;
+  --shadow-opacity: 0.2;
+  --shadow-weapon-opacity: 0.4;
+  --bg-menu-opacity: 0.7;
+  --bg-menu-sp-opacity: 0.95;
+  --btn-disable-opacity: 0.8;
+  --btn-innerBorder-opacity: 0.2;
+  --menu-btn-opacity: 0.5;
+  --bingo-td-opacity: 0.8;
+  --bingo-td-done-opacity: 0.9;
+  --bingo-td-bingo-opacity: 1;
+  --bingo-td-reach-opacity: 0.7;
+  --simple-bingo-opacity: 0.1;
+}
+
+/* ### Global ### */
+/* === Base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background-color: var(--bg-color);
+  font-size: 14pt;
+  font-family: Splatoon2, sans-serif;
+  color: var(--txt-color);
+  transition: background 1s, color 1s;
+}
+
+a {
+  transition: color 0.5s, background 0.5s;
+}
+a:link, a:visited {
+  color: var(--txt-link-color);
+}
+
+dialog {
+  background-color: var(--bg-front-color);
+  border-radius: 0.5rem;
+  border-width: 0;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, var(--shadow-opacity));
+  color: var(--txt-color);
+  text-align: center;
+  line-height: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  dialog {
+    max-width: 80%;
+  }
+}
+
+input[type=checkbox] {
+  margin: 3px 3px 3px 4px;
+  accent-color: var(--btn-color);
+}
+
+body [lang=ja], body [lang=en] {
+  display: none;
+}
+
+body[lang=ja] [lang=ja] {
+  display: unset;
+}
+
+body[lang=en] [lang=en] {
+  display: unset;
+}/*# sourceMappingURL=index.css.map */

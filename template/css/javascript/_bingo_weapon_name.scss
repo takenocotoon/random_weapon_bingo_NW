@@ -1,0 +1,10 @@
+.p-bingo__weaponName {
+    display: none;
+}
+.js-showWeaponTxt {
+    .p-bingo__td:not(.is-done):not(.is-bingo){
+        .p-bingo__weaponName {
+            display: unset;
+        }
+    }
+}

@@ -1,0 +1,119 @@
+@use '../../global/' as g;
+.p-bingo {
+    
+    &__table {
+        width: 100%;
+        padding-bottom: 1%;
+    }
+    
+    &__tr {
+        display: flex;
+        margin: 1% 0 0 1%;
+    }
+    
+    &__td {
+        position: relative;
+        margin: 0 1% 0 0;
+        padding: 0;
+        width: 100%;
+        
+        background: rgba(var(--bingo-td-rgb-color), var(--bingo-td-opacity));
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: contain;
+        border-radius: 30%;
+        transition: background .2s;
+        
+        flex-direction: row;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 0;
+        
+        &.is-done {
+            background-image: url(../img/paint.webp);
+            background-color: rgba(var(--bingo-td-done-rgb-color), var(--bingo-td-opacity));
+            opacity: var(--bingo-td-done-opacity);
+            img {
+                filter: grayscale(100%);
+            }
+        }
+        
+        &.is-bingo {
+            background-image: url(../img/paint.webp);
+            background-color: rgba(var(--bingo-td-bingo-rgb-color), var(--bingo-td-bingo-opacity));
+            img {
+                filter: grayscale(100%);
+            }
+        }
+        
+        &.is-reach {
+            background-color: rgba(var(--bingo-td-reach-rgb-color), var(--bingo-td-reach-opacity));
+        }
+        
+        @media (any-hover:hover) {
+            &:hover {
+                filter: contrast(150%);
+            }
+        }
+    }
+    
+    &__weaponImg {
+        width: 100%;
+        height: auto;
+        vertical-align: top;
+        
+        filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, var(--shadow-weapon-opacity)));
+        
+        &-free {
+            filter: none;
+        }
+    }
+    
+    &__weaponName {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 0.3rem;
+        
+        border-radius: 1rem;
+        text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
+            -1px 1px 0 #FFF, 1px -1px 0 #FFF,
+            0px 1px 0 #FFF,  0 -1px 0 #FFF,
+            -1px 0 0 #FFF, 1px 0 0 #FFF;
+        
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        text-align: center;
+        color: #000;
+        
+        @include g.mq('sp') {
+            font-size: 0.5rem;
+            line-height: 0.5rem;
+        }
+    }
+    
+    
+    &__messageBox {
+        text-align: center;
+        font-size: 1.8rem;
+        line-height: 3rem;
+        margin-top: 20px;
+        height: 6rem;
+        
+        @include g.mq('sp') {
+            font-size: 1.2rem;
+        }
+        
+        &-bingo {
+            color: #000;
+            background-color: rgba(var(--main-rgb-color), var(--bingo-td-reach-opacity));
+            width: 100%;
+        }
+        &-reach {
+            color: var(--txt-link-color);
+            background-color: rgba(var(--simple-bingo-rgb-color), var(--simple-bingo-opacity));
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,142 @@
+/* === Theme === */
+$palette_salmonPink: #FE6345;
+$palette_salmonRed: #ff2900;
+$palette_salmonGreen: #098264;
+$palette_yellow: #ffda08;
+$palette_chromaGreen: #00FF00;
+$palette_pureBlack: #000000;
+$palette_pureWhite: #FFFFFF;
+
+$schemes: light, dark, 'green', 'transparent';
+$default_scheme: light;
+$scheme_colors: (
+    main: (
+        $palette_salmonPink,
+        $palette_salmonPink,
+        $palette_chromaGreen
+    ),
+    accent: (
+        $palette_salmonGreen,
+    ),
+    disable: (
+        lighten($palette_pureBlack, 50%)
+    ),
+    border: (
+        darken($palette_pureWhite, 20%)
+    ),
+    txt: (
+        lighten($palette_pureBlack, 20%),
+        darken($palette_pureWhite, 20%)
+    ),
+    txt-on-main: (
+        $palette_pureWhite,
+        darken($palette_pureWhite, 10%)
+    ),
+    txt-link: (
+        desaturate(darken($palette_salmonPink, 40%), 30%),
+        desaturate(lighten($palette_salmonPink, 30%), 30%),
+        $palette_pureWhite
+    ),
+    bg: (
+        $palette_pureWhite,
+        #222222,
+        $palette_chromaGreen,
+        rgba(255, 255, 255 ,0),
+    ),
+    bg-front: (
+        darken($palette_pureWhite, 10%),
+        #333333,
+        $palette_chromaGreen,
+        rgba(255, 255, 255 ,0)
+    ),
+    bg-back : (
+        #ECECEC,
+        #111111,
+        $palette_chromaGreen,
+        rgba(255, 255, 255 ,0)
+    ),
+    btn: (
+        desaturate(darken($palette_salmonPink, 20%), 20%),
+    ),
+    btn-txt: (
+        #EEEEEE
+    ),
+    btn-active: (
+        $palette_salmonPink
+    ),
+    btn-disable: (
+        #DDDDDD,
+        #333333
+    ),
+    btn-shadow: (
+        desaturate(darken($palette_salmonPink, 40%), 30%)
+    ),
+    
+    bingo-td: (
+        $palette_pureWhite
+    ),
+    bingo-td-done: (
+        $palette_pureBlack
+    ),
+    bingo-td-bingo: (
+        $palette_salmonRed
+    ),
+    bingo-td-reach: (
+        $palette_yellow
+    ),
+    simple-bingo: (
+        $palette_pureBlack,
+        $palette_pureWhite
+    ),
+);
+$scheme_opacities: (
+    shadow: (.2, .2, 0),
+    shadow-weapon: (.4, .4, 0),
+    
+    bg-menu: (.7, .7, 1),
+    bg-menu-sp: (.95, .95, 1),
+    btn-disable: (.8, .95, 1),
+    btn-innerBorder: (.2, .5),
+    menu-btn: (.5, .5, 1),
+    
+    bingo-td: (.8, .8, 1),
+    bingo-td-done: (.9, .9, 1),
+    bingo-td-bingo: (1, 1, 1),
+    bingo-td-reach: (.7, .7, 1),
+    
+    simple-bingo: (.1, .1, 1),
+);
+
+@mixin themes($scheme) {
+    @each $name, $colors in $scheme_colors {
+        $color: if(length($colors) >= index($schemes, $scheme), nth($colors, index($schemes, $scheme)), nth($colors, 1));
+        $r: red($color);
+        $g: green($color);
+        $b: blue($color);
+        --#{$name}-color: #{$color};
+        --#{$name}-rgb-color: #{$r, $g, $b};
+    }
+    @each $name, $opacities in $scheme_opacities {
+        $opacity: if(length($opacities) >= index($schemes, $scheme), nth($opacities, index($schemes, $scheme)), nth($opacities, 1));
+        --#{$name}-opacity: #{$opacity};
+    }
+}
+
+@each $scheme in $schemes {
+    @if $scheme == $default_scheme {
+        body {
+            @include themes($scheme);
+        }
+    }
+    @if $scheme == dark or $scheme == light {
+        @media (prefers-color-scheme: #{$scheme}) {
+            body {
+                @include themes($scheme);
+            }
+        }
+    }
+    
+    body.theme-#{$scheme} {
+        @include themes($scheme);
+    }
+}

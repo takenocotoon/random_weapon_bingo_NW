@@ -1,0 +1,11 @@
+@use '../../global/' as g;
+
+.p-container {
+    width: 100%;
+    max-width: 70vh;
+    margin: 0 auto 50px;
+    
+    @include g.mq('sp') {
+        width: 90%;
+    }
+}
