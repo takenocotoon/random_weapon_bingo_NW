@@ -578,6 +578,9 @@ body[lang=en] [lang=en] {
 .c-button:active {
   background-color: var(--btn-active-color);
 }
+.c-button:disabled {
+  background-color: var(--btn-disable-color);
+}
 .c-button__text-disabled {
   display: none;
 }
@@ -840,7 +843,7 @@ body[lang=en] [lang=en] {
 }
 
 .p-footer {
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   line-height: 1.2rem;
   text-align: right;
@@ -1094,6 +1097,7 @@ body[lang=en] [lang=en] {
   .p-nav__ul {
     flex-wrap: wrap;
     justify-content: flex-end;
+    padding-right: calc((100% - 487px - 307px) / 2);
   }
 }
 @media screen and (max-width: 767px) {
@@ -1204,7 +1208,8 @@ body[lang=en] [lang=en] {
     position: absolute;
     top: 0;
     right: 0;
-    max-width: 800px;
+    max-width: 50%;
+    min-width: 700px;
     margin-top: 4rem;
     padding: 2rem;
     background: rgba(var(--bg-front-rgb-color), var(--bg-menu-opacity));

@@ -26,8 +26,6 @@ export class BingoCreator {
             centerItemObj = freeItemsList[1];
         }
         
-        console.log(bukiList);
-        
         // 足りないマスをfreeで埋める
         while (bukiList.length < bingoRows*bingoCols - 1) {
             if (centerItem == 'squid' || centerItemObj.lid % 10 !== 0) bukiList.push(freeItemsList[1]);

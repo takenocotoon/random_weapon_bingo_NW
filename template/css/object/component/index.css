@@ -18,6 +18,9 @@
 .c-button:active {
   background-color: var(--btn-active-color);
 }
+.c-button:disabled {
+  background-color: var(--btn-disable-color);
+}
 .c-button__text-disabled {
   display: none;
 }

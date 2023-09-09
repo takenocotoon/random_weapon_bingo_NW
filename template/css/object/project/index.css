@@ -156,7 +156,7 @@
 }
 
 .p-footer {
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   line-height: 1.2rem;
   text-align: right;
@@ -410,6 +410,7 @@
   .p-nav__ul {
     flex-wrap: wrap;
     justify-content: flex-end;
+    padding-right: calc((100% - 487px - 307px) / 2);
   }
 }
 @media screen and (max-width: 767px) {
@@ -520,7 +521,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    max-width: 800px;
+    max-width: 50%;
+    min-width: 700px;
     margin-top: 4rem;
     padding: 2rem;
     background: rgba(var(--bg-front-rgb-color), var(--bg-menu-opacity));

@@ -3,7 +3,6 @@ import { getElement } from '../../common/function/_get_element';
 
 export function playBingoEffect( elementId:string ) {
     const myCanvas:HTMLCanvasElement|null = getElement(elementId) as HTMLCanvasElement;
-    if (!myCanvas) console.log(`Element with ID "${elementId}" not found.`);
     const myConfetti = confetti.create(myCanvas, {
         resize: true,
         useWorker: true

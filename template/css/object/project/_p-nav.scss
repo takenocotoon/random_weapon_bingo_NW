@@ -25,6 +25,7 @@
         @include g.mq('pc') {
             flex-wrap: wrap;
             justify-content: flex-end;
+            padding-right: calc((100% - 487px - 307px)/2);
         }
         @include g.mq('sp') {
             height: 100%;
@@ -140,7 +141,8 @@
             position: absolute;
             top: 0;
             right: 0;
-            max-width: 800px;
+            max-width: 50%;
+            min-width: 700px;
             margin-top: 4rem;
             padding: 2rem;
             

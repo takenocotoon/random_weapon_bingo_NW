@@ -10,9 +10,9 @@
             "group": "build",
         },
         {
-            "label": "npx webpack",
+            "label": "npx webpack prod",
             "type": "shell",
-            "command": "npx webpack",
+            "command": "npx webpack --config webpack.prod.js",
             "group": "build",
         },
         {

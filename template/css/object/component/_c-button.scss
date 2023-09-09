@@ -19,6 +19,9 @@
     &:active {
         background-color: var(--btn-active-color);
     }
+    &:disabled {
+        background-color: var(--btn-disable-color);
+    }
     
     &__text-disabled {
         display: none;

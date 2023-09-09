@@ -11,9 +11,10 @@
     $twitter='@takenocotoon';
     $theme_color='#FE6345';
     $cssPaths=['./css/style.min.css', './remixicon/remixicon.css'];
-    $modulePaths=['./js/main.js'];
+    $modulePaths=['./js/main.min.js'];
     $scriptPaths=[];
     $base_folder='./';
+    $version='2.0.2';
     include(__DIR__ . '/parts/head/_head.php');
 ?>
 </head>
