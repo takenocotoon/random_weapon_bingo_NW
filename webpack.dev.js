@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   entry: './ts/index.ts',
   output: {
-    filename: 'main.js',
+    filename: 'main.dev.js',
     path: path.resolve(__dirname, 'template/js'),
   },
   resolve: {

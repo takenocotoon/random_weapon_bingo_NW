@@ -1,12 +1,18 @@
-{
-    "name": "Splatoon3 ブキビンゴ",
-    "short_name": "ブキビンゴ",
-    "id":"buki-bingo",
+<?php 
+    if (!isset($is_prod)) {
+        header('Content-type: application/json'); 
+        include(__DIR__.'/settings.php');
+    } else {
+        $version = VERSION;
+    } ?>{
+    "name": "<?php echo TITLE ?>",
+    "short_name": "<?php echo TITLE_SHORT ?>",
+    "id":"<?php echo ID ?>",
     "start_url": "./index.html",
     "display": "standalone",
     "orientation": "any",
     "background_color": "#444444",
-    "theme_color": "#FE6345",
+    "theme_color": "<?php echo THEME_COLOR ?>",
     "icons": [
         {
             "src": "./img/icons/48a.png",

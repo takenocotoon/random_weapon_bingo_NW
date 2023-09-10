@@ -3,13 +3,14 @@
                     <span lang="en">Generate the Bingo Card</span>
                 </button>
                 <div class="u-noPrint">
-                    <?php 
+<?php 
+                        $indentDepth = 5;
                         $settingsOption = array(
                             'bingoEffect' => ['ビンゴ演出', 'Bingo Effects'],
                             'bingoWeaponText' => ['ブキ名表示', 'Display Weapon Name'],
                         );
                         foreach ($settingsOption as $id => $name) {
-                            echo "                    ";
+                            echo str_repeat(INDENT, $indentDepth);
                             echo "<input type=\"checkbox\" name=\"settingsOptions\" value=\"{$id}\" id=\"js-settingsOptions__{$id}\"";
                             if ($id=='bingoEffect') echo " checked";
                             echo ">";

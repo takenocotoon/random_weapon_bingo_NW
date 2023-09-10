@@ -3,19 +3,14 @@
 
 <head>
 <?php
-    $date=date("ymdHis");
-    $title='Splatoon3 ブキビンゴ';
-    $title_en='Splatoon3 Weapon Bingo';
-    $description='A tool to play Bingo with Splatoon 3 weapons.';
-    $url='https://takenocotoon.github.io/random_weapon_bingo_nw/';
-    $twitter='@takenocotoon';
-    $theme_color='#FE6345';
-    $cssPaths=['./css/style.min.css', './remixicon/remixicon.css'];
-    $modulePaths=['./js/main.min.js'];
-    $scriptPaths=[];
-    $base_folder='./';
-    $version='2.0.2';
-    include(__DIR__ . '/parts/head/_head.php');
+    $date = date("ymdHis");
+    $indentDepth = 0;
+    $dir = __DIR__;
+    include($dir . '/settings.php');
+    include($dir . '/parts/head/_head.php');
+    if (isset($is_prod)) {
+        $version = VERSION;
+    }
 ?>
 </head>
 
@@ -23,7 +18,7 @@
 <div id="l-wrapper">
 
 <?php
-    include(__DIR__ . '/parts/body/_header.php');
+    include($dir . '/parts/body/_header.php');
     $menuItems = [
         [
             'url' => '#',
@@ -62,13 +57,13 @@
         //     'en' => 'Help',
         // ],
     ];
-    include(__DIR__ . '/parts/body/_nav.php');
-    include(__DIR__ . '/parts/body/_main.php');
+    include($dir . '/parts/body/_nav.php');
+    include($dir . '/parts/body/_main.php');
     $dialogs = [
         'center-item', 'compleat'
     ];
-    include(__DIR__ . '/parts/body/_dialog.php');
-    include(__DIR__ . '/parts/body/_footer.php');
+    include($dir . '/parts/body/_dialog.php');
+    include($dir . '/parts/body/_footer.php');
 ?>
 
 </div>

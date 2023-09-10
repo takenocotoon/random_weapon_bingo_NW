@@ -35,21 +35,36 @@ foreach ($iterator as $fileinfo) {
     
     $dir = dirname($output_file);
     if (!$fileinfo->isFile()) {
-        if (strpos($file, 'parts') === false) {
+        if (strpos($file, '/parts/') === false and strpos($file, '/_') === false) {
             makeDir($dir);
+        } else {
+            echo "pass\n";
         }
         continue;
     }
     
     // $file = $fileinfo->getPathname();
-    if (strpos($file, 'parts') === false and strpos($file, '.create') === false and strpos($file, '_') !== 0) {
+    if (
+        strpos($file, '/parts/') === false and 
+        strpos($file, '/src/') === false and 
+        strpos($file, '/.create/') === false and 
+        strpos($file, '/_') === false and 
+        strpos($file, '.dev.js') === false and 
+        strpos($file, '.dev.css') === false and 
+        strpos($file, 'index.min.css') === false and 
+        strpos($file, 'settings.php') === false 
+    ) {
         $info = new SplFileInfo($file);
         if($info->getExtension() == 'php'){
             convertHtml($file, $output_file);
         } else if ($info->getExtension() != 'map' and $info->getExtension() != 'scss') {
             echo " -> copy from:" . $file . " to:" . $output_file . "\n";
             copy($file, $output_file);
+        } else {
+            echo "pass\n";
         }
+    } else {
+        echo "pass\n";
     }
 }
 
@@ -59,12 +74,13 @@ function convertHtml($target, $output_file){
     $contents = '';
     
     ob_start();
+    $is_prod = true;
     include($target);
     $contents = ob_get_contents();
     ob_end_clean();
-    echo " -> convertHtml from:" . $target . " to:" . preg_replace('/\A(.+)\.(php?|html?)\z/', '$1.html', $output_file) . "\n";
+    echo " -> convertHtml from:" . $target . " to:" . preg_replace('/\A(.+)\.(php?)\z/', '$1', $output_file) . "\n";
     file_put_contents(
-        preg_replace('/\A(.+)\.(php?|html?)\z/', '$1.html', $output_file),
+        preg_replace('/\A(.+)\.(php?)\z/', '$1', $output_file),
         preg_replace('/\A\n/', '', $contents)
     );
 }

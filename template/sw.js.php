@@ -1,10 +1,16 @@
-const CACHE_VERSION = 'v2.0.3dev1';
+<?php 
+    if (!isset($is_prod)) {
+        header('Content-type: text/javascript'); 
+        include(__DIR__.'/settings.php');
+    } else {
+        $version = VERSION;
+    } ?>const CACHE_VERSION = 'v<?php echo $version; ?>';
 const CACHE_NAME = `${registration.scope}!${CACHE_VERSION}`;
 
 const urlsToCache = [
-    'index.html',
-    'css/style.min.css',
-    'js/main.min.js',
+    'index.html<?php if (!isset($is_prod)) echo '.php'; ?>',
+    'css/style.<?php if (!isset($is_prod)) echo 'dev'; else echo 'min'; ?>.css',
+    'js/main.<?php if (!isset($is_prod)) echo 'dev'; else echo 'min'; ?>.js',
     'font/s1font.woff2',
     'font/s2font.woff2',
     'remixicon/remixicon.css',

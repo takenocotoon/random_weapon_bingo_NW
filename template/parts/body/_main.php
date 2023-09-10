@@ -4,7 +4,7 @@
     <div class="p-container" id="js-container">
         <article class="p-main__article">
             <section class="p-main__section">
-<?php include(__DIR__ . '/../contents/_main_contents.php'); ?>
+<?php include($dir . '/parts/contents/_main_contents.php'); ?>
             </section>
         </article>
     </div>

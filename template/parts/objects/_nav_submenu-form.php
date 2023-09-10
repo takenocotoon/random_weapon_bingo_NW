@@ -1,9 +1,12 @@
                 <div class="p-menuForm">
                     <div class="p-menuForm__title">
-<?php foreach ($submenu['title'] as $language => $value) { echo "<span lang=\"{$language}\">{$value}</span>"; } ?>
+                        <?php 
+                            foreach ($submenu['title'] as $language => $value) {
+                                echo "<span lang=\"{$language}\">{$value}</span>";
+                            }
+                        ?>
                     </div>
-<?php 
-    echo "\n                    ";
+                    <?php 
     foreach ($submenu['items'] as $id => $name) {
         echo "<input type=\"{$submenu['type']}\" name=\"{$submenu['id']}\" value=\"{$id}\" id=\"js-{$submenu['id']}__{$id}\"";
         if (in_array($id, $submenu['defaultValues'])) { echo " checked"; };

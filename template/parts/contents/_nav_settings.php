@@ -1,5 +1,6 @@
             <div class="p-nav__submenu">
 <?php 
+    $indentDepth = 4;
     $submenu = [
         'type' => 'radio',
         'id' => 'settingsBingoBackground',
@@ -15,7 +16,7 @@
             'salmonrun',
         ],
     ];
-    include(__DIR__ . '/../objects/_nav_submenu-form.php');
+    include($dir . '/parts/objects/_nav_submenu-form.php');
     
     $submenu = [
         'type' => 'radio',
@@ -32,7 +33,7 @@
             'default',
         ],
     ];
-    include(__DIR__ . '/../objects/_nav_submenu-form.php');
+    include($dir . '/parts/objects/_nav_submenu-form.php');
 ?>
                 <div class="p-menuForm">
                     <div class="p-menuForm__title">Language</div><?php 

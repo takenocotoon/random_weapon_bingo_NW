@@ -17,7 +17,7 @@
         ],
         'defaultValues' => [],
     ];
-    include(__DIR__ . '/../objects/_nav_submenu-form.php');
+    include($dir . '/parts/objects/_nav_submenu-form.php');
     
     $submenu = [
         'type' => 'radio',
@@ -33,7 +33,7 @@
         'defaultValues' => [
         ],
     ];
-    include(__DIR__ . '/../objects/_nav_submenu-form.php');
+    include($dir . '/parts/objects/_nav_submenu-form.php');
 ?>
                 <div class="p-menuForm">
                     <div class="p-menuForm__title">
@@ -41,16 +41,18 @@
                         <span lang="en">Target Weapons </span>
                         <span id="js-weaponsNumber-text">59</span>
                         <span lang="ja">個</span>
-                    </div><?php 
+                    </div>
+<?php 
                         $settingsWeapons = array(
                             'grizzco' => ['クマブキ', 'Grizzco Weapons'],
                             'minor' => ['マイナーチェンジブキ', 'Variant Weapons'],
                             'scope' => ['スコープ', 'Scopes'],
                             'hero' => ['ヒーローブキ', 'Hero Weapons'],
                         );
-                        echo "\n                    ";
+                        $indentDepth = 5;
+                        echo str_repeat(INDENT, $indentDepth);
                         foreach ($settingsWeapons as $id => $name) {
-                            echo "                    ";
+                            echo str_repeat(INDENT, $indentDepth);
                             echo "<input type=\"checkbox\" name=\"settingsWeapons\" value=\"{$id}\" id=\"js-settingsWeapons__{$id}\"";
                             // if ($id=='grizzco') echo " checked";
                             echo " class=\"c-checkbox__hidden\">";

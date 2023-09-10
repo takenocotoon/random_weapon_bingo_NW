@@ -3,13 +3,13 @@
                     <div class="p-menuForm__title">
                         <span lang="ja">データ保存スロット</span>
                         <span lang="en">Data Storage Slots</span>
-                    </div><?php 
+                    </div>
+                    <?php 
                         $saveDataSlot = array(
                             '1' => '1',
                             '2' => '2',
                             '3' => '3',
                         );
-                        echo "\n                    ";
                         foreach ($saveDataSlot as $id => $name) {
                             echo "<input type=\"radio\" name=\"saveDataSlot\" value=\"{$id}\" id=\"js-saveDataSlot--{$id}\"";
                             if ($id=='ja') { echo " checked"; };
