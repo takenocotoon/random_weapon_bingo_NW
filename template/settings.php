@@ -18,9 +18,9 @@ if (isset($is_prod)) {
     $scriptPaths=[];
 }
 const BASE_FOLDER = './';
-const VERSION = '2.0.3';
+const VERSION = '2.0.4';
 if (!isset($is_prod)) {
-    $version .= 'dev'.$date;
+    $version = VERSION.'dev'.$date;
 }
 const INDENT = '    ';
 ?>

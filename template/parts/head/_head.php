@@ -21,9 +21,9 @@
     <meta name="twitter:site" content="@<?php echo TWITTER; ?>">
     <meta name="theme-color" content="<?php echo THEME_COLOR; ?>">
     <meta name="og:image"          content="<?php echo URL; ?>icon.png">
-    <link rel="icon" type="image/png" href="<?php echo BASE_FOLDER; ?>favicon.png">
-    <link rel="apple-touch-icon"      href="<?php echo BASE_FOLDER; ?>icon.png">
-    <link rel="manifest" href="<?php echo BASE_FOLDER; ?>manifest.json<?php if (!isset($is_prod)) echo '.php'; ?>">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon"      href="icon.png">
+    <link rel="manifest" href="manifest.json<?php if (!isset($is_prod)) echo '.php'; ?>">
 <?php
 foreach ($cssPaths as $path) {
     echo "    <link rel=\"stylesheet\" href=\"{$path}?{$date}\">\n";
