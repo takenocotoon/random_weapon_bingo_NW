@@ -11,7 +11,7 @@ export function filterBukiList(
     
     if (includeGrizzco) bukiList = bukiList.concat(bukiListGrizzco);
     if (!includeMinor) bukiList = bukiList.filter(buki => buki.ja === buki.original);
-    if (!includeScope && includeMinor) bukiList = bukiList.filter(buki => !buki.ja.includes('スコープ'));
+    if (!includeScope) bukiList = bukiList.filter(buki => !buki.ja.includes('スコープ'));
     if (includeHero && !includeMinor) bukiList = bukiList.concat(bukiListHero);
     if (!includeHero && includeMinor) bukiList = bukiList.filter(buki => !buki.ja.includes('ヒーロー'));
     
